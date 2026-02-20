@@ -11,7 +11,6 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* --- СТИЛИ (полностью идентичны предыдущей версии с анимациями) --- */
         * {
             margin: 0;
             padding: 0;
@@ -256,6 +255,7 @@
             animation: floatTitle 5s ease-in-out infinite, gradientShift 8s linear infinite;
             display: inline-block;
             text-shadow: 0 0 40px #7fc4ff;
+            word-break: break-word;
         }
 
         @keyframes floatTitle {
@@ -284,6 +284,8 @@
             box-shadow: 0 8px 0 #0f3345, 0 0 30px #5ab0f0;
             transition: all 0.3s ease;
             animation: tagPulse 2.5s infinite;
+            word-break: break-word;
+            max-width: 100%;
         }
 
         @keyframes tagPulse {
@@ -353,6 +355,7 @@
             word-break: break-word;
             transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s;
             animation: ipPulse 3s infinite;
+            line-height: 1.2;
         }
 
         @keyframes ipPulse {
@@ -387,6 +390,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 30px #7ac2ff;
+            word-break: break-word;
         }
 
         .copy-btn::before {
@@ -444,6 +448,7 @@
             font-weight: 400;
             color: #f0faff;
             transition: transform 0.3s;
+            word-break: break-word;
         }
 
         .card:hover .description-text {
@@ -472,6 +477,7 @@
             overflow: hidden;
             animation: tagAppear 0.5s ease-out;
             animation-fill-mode: both;
+            word-break: break-word;
         }
 
         .tag:nth-child(1) { animation-delay: 0.2s; }
@@ -506,6 +512,7 @@
             margin-bottom: 16px;
             transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.5), box-shadow 0.3s;
             animation: previewPop 0.7s;
+            word-break: break-word;
         }
 
         @keyframes previewPop {
@@ -525,6 +532,7 @@
             color: #ffffff;
             transition: text-shadow 0.3s;
             animation: titleGlow 3s infinite;
+            word-break: break-word;
         }
 
         @keyframes titleGlow {
@@ -550,6 +558,7 @@
             animation: pulseSoft 2.5s infinite, wiggle 6s infinite;
             position: relative;
             overflow: hidden;
+            word-break: break-word;
         }
 
         .read-more-btn::before {
@@ -603,6 +612,7 @@
             animation: pulseButton 2.5s infinite, shake 8s infinite;
             position: relative;
             overflow: hidden;
+            word-break: break-word;
         }
 
         .rules-btn::before {
@@ -669,6 +679,7 @@
             overflow: hidden;
             animation: socialPop 0.5s ease-out;
             animation-fill-mode: both;
+            word-break: break-word;
         }
 
         .social-btn:nth-child(1) { animation-delay: 0.1s; }
@@ -710,6 +721,7 @@
             transition: opacity 0.3s;
             animation: fadeNote 4s infinite;
             text-shadow: 0 0 10px #7fc4ff;
+            word-break: break-word;
         }
 
         @keyframes fadeNote {
@@ -751,6 +763,7 @@
             overflow-y: auto;
             transform: scale(0.7) translateY(50px) rotate(-5deg);
             transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            word-break: break-word;
         }
 
         .modal.show .modal-content {
@@ -770,6 +783,7 @@
             font-size: 2.2rem;
             font-weight: 700;
             color: #ffffff;
+            word-break: break-word;
         }
 
         .modal-header i {
@@ -799,6 +813,7 @@
             animation-fill-mode: both;
             position: relative;
             overflow: hidden;
+            word-break: break-word;
         }
 
         .news-list-item:nth-child(1) { animation-delay: 0.05s; }
@@ -857,6 +872,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 20px #8ec9ff;
+            word-break: break-word;
         }
 
         .back-btn::before, .close-modal::before {
@@ -913,6 +929,7 @@
             border: 2px solid #479fd4;
             margin-bottom: 20px;
             animation: pulseDate 2s infinite;
+            word-break: break-word;
         }
 
         @keyframes pulseDate {
@@ -937,6 +954,7 @@
             box-shadow: 0 8px 0 #0f3b50, 0 0 35px #4ea0d6;
             transition: all 0.3s;
             animation: versionPulse 3s infinite, versionFloat 5s infinite;
+            word-break: break-word;
         }
 
         @keyframes versionPulse {
@@ -963,6 +981,7 @@
             font-weight: 500;
             animation: footerFade 4s infinite;
             text-shadow: 0 0 12px #7fc4ff;
+            word-break: break-word;
         }
 
         @keyframes footerFade {
@@ -990,6 +1009,7 @@
             font-size: 1.1rem;
             opacity: 0;
             transition: opacity 0.2s ease, transform 0.2s cubic-bezier(0.2, 0.9, 0.4, 1.5);
+            word-break: break-word;
         }
 
         .toast.show {
@@ -1002,6 +1022,82 @@
             0% { transform: translate(-50%, 20px) scale(0.7); opacity: 0; }
             80% { transform: translate(-50%, -2px) scale(1.04); }
             100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
+        }
+
+        /* Адаптивность для мобильных */
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 4rem;
+            }
+            .hero .tagline {
+                font-size: 1rem;
+                padding: 10px 20px;
+            }
+            .ip-address {
+                font-size: 1.8rem;
+                padding: 14px 12px;
+            }
+            .copy-btn {
+                font-size: 1.2rem;
+                padding: 14px;
+            }
+            .section-header h2 {
+                font-size: 1.6rem;
+            }
+            .section-header i {
+                font-size: 2rem;
+            }
+            .description-text {
+                font-size: 1rem;
+            }
+            .tag {
+                font-size: 0.9rem;
+                padding: 10px 18px;
+            }
+            .news-preview-title {
+                font-size: 1.3rem;
+            }
+            .read-more-btn {
+                font-size: 1rem;
+                padding: 12px 20px;
+            }
+            .rules-btn {
+                font-size: 1.2rem;
+                padding: 18px;
+            }
+            .social-btn {
+                font-size: 0.9rem;
+                padding: 14px 8px;
+            }
+            .version-badge span {
+                font-size: 0.9rem;
+                padding: 12px 20px;
+            }
+            .modal-header h3 {
+                font-size: 1.8rem;
+            }
+            .news-list-item {
+                padding: 14px 18px;
+            }
+            .news-list-item .news-title {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+            .ip-address {
+                font-size: 1.4rem;
+            }
+            .copy-btn {
+                font-size: 1rem;
+                gap: 8px;
+            }
+            .social-grid {
+                grid-template-columns: 1fr; /* одна колонка на совсем маленьких */
+            }
         }
     </style>
 </head>
@@ -1175,7 +1271,7 @@
             }, 2000);
         }
 
-        // Данные новостей (исправленные)
+        // Данные новостей
         const newsData = [
             { id: 1, date: '01.03.2026', title: 'Выпуск бота', full: 'Наш бот запущен! Теперь Discord-сервер автоматизирован. Бот помогает с модерацией и проведением ивентов.' },
             { id: 2, date: '28.02.2026', title: 'Тестирование бота', full: 'Началось закрытое тестирование бота. Участники проверяют функционал и сообщают об ошибках.' },
