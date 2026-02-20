@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>Snowfune — анархия в снегах</title>
+    <!-- Шрифт Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(145deg, #0b202b 0%, #1b4355 100%);
+            color: #e5f3ff;
+            min-height: 100vh;
+            padding: 24px 16px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 560px;
+            width: 100%;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(4px);
+            border-radius: 48px;
+            padding: 32px 24px;
+            margin-bottom: 24px;
+            border: 1px solid rgba(200, 235, 255, 0.2);
+            box-shadow: 0 20px 40px -20px #00000080, inset 0 1px 2px rgba(255,255,255,0.1);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+        }
+
+        .section-header i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #7fd4ff, #b0e0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #fff, #c8efff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-left: 5px solid #7fc4ff;
+            padding-left: 16px;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 32px;
+        }
+
+        .hero h1 {
+            font-size: 4.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #aad8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 10px 30px #0066aa40;
+            letter-spacing: -0.03em;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .hero .tagline {
+            background: rgba(0, 40, 60, 0.4);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+            padding: 10px 32px;
+            border-radius: 60px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            border: 1px solid #5ab0f0;
+            color: #e3f3ff;
+            box-shadow: 0 6px 0 #0f3345;
+        }
+
+        .ip-block {
+            background: rgba(10, 35, 50, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 60px;
+            padding: 28px;
+            border: 1px solid #3fa0e0;
+            box-shadow: 0 25px 40px -18px #000000, 0 8px 0 #0f3448;
+        }
+
+        .ip-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #b5e2ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .ip-address {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: monospace;
+            background: #0b2635;
+            padding: 16px 20px;
+            border-radius: 50px;
+            text-align: center;
+            color: #dcf3ff;
+            border: 1px solid #4ba3e6;
+            margin: 18px 0 24px;
+            box-shadow: inset 0 4px 12px #00000060;
+            word-break: break-word;
+        }
+
+        .copy-btn {
+            background: linear-gradient(145deg, #2b7eb0, #1f6590);
+            width: 100%;
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.4rem;
+            padding: 18px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            cursor: pointer;
+            border-bottom: 6px solid #0e3e5c;
+            transition: 0.05s linear;
+            border: 1px solid #7ac2ff;
+        }
+
+        .copy-btn:active {
+            transform: translateY(4px);
+            border-bottom-width: 2px;
+        }
+
+        .description-text {
+            font-size: 1.2rem;
+            margin-bottom: 28px;
+            font-weight: 400;
+            color: #e2f2ff;
+        }
+
+        .tag-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .tag {
+            background: #184b63;
+            border-radius: 50px;
+            padding: 12px 28px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid #5ab5f5;
+            box-shadow: 0 5px 0 #0e3a4f;
+        }
+
+        .tag i {
+            color: #ffdb8b;
+            font-size: 1.3rem;
+        }
+
+        /* Новости — краткий блок */
+        .news-preview {
+            background: rgba(20, 55, 75, 0.6);
+            backdrop-filter: blur(4px);
+            border-radius: 40px;
+            padding: 28px;
+            border: 1px solid #3d9fd9;
+            box-shadow: 0 8px 0 #104052;
+            margin-bottom: 16px;
+        }
+
+        .news-preview-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #ffffff;
+        }
+
+        .news-preview-desc {
+            color: #d0e6fa;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .read-more-btn {
+            background: #22668a;
+            border: 1px solid #76bef5;
+            border-radius: 60px;
+            padding: 14px 24px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            box-shadow: 0 6px 0 #0f3b50;
+            transition: 0.05s linear;
+            color: white;
+            border-bottom: 4px solid #0e3e5c;
+        }
+
+        .read-more-btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 #0f3b50;
+        }
+
+        /* Кнопка правил */
+        .rules-btn {
+            background: #22668a;
+            border-color: #76bef5;
+            padding: 20px;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            border: 1px solid #57abec;
+            box-shadow: 0 7px 0 #0f3b50;
+            transition: 0.05s linear;
+            color: white;
+            font-weight: 600;
+            width: 100%;
+        }
+
+        .rules-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 2px 0 #0f3b50;
+        }
+
+        /* Соцсети 2x2 */
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 20px 0 8px;
+        }
+
+        .social-btn {
+            background: #19506b;
+            border-radius: 60px;
+            padding: 18px 12px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 1px solid #57abec;
+            box-shadow: 0 7px 0 #0f3b50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: 0.05s linear;
+            cursor: pointer;
+        }
+
+        .social-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 2px 0 #0f3b50;
+        }
+
+        .social-btn i {
+            font-size: 1.6rem;
+        }
+
+        .donate-note {
+            text-align: center;
+            font-size: 0.95rem;
+            margin-top: 12px;
+            color: #b8dcff;
+            font-style: italic;
+        }
+
+        /* Модальные окна */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 25, 40, 0.9);
+            backdrop-filter: blur(12px);
+            z-index: 3000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #1b4c66;
+            border-radius: 56px;
+            padding: 36px 28px;
+            max-width: 520px;
+            width: 100%;
+            border: 2px solid #5fb3f0;
+            box-shadow: 0 30px 50px #000000cc;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            border-bottom: 3px solid #4ea8e6;
+            padding-bottom: 16px;
+            margin-bottom: 24px;
+        }
+
+        .modal-header h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #ddf2ff;
+        }
+
+        .modal-header i {
+            font-size: 2.2rem;
+            color: #7fc4ff;
+        }
+
+        .news-list {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .news-list-item {
+            background: #19506b;
+            border-radius: 50px;
+            padding: 18px 24px;
+            margin-bottom: 16px;
+            border: 1px solid #4ea0d6;
+            box-shadow: 0 5px 0 #0f3b50;
+            cursor: pointer;
+            transition: 0.05s linear;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .news-list-item:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 #0f3b50;
+        }
+
+        .news-list-item .news-date {
+            background: #1d4e69;
+            padding: 5px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            border: 1px solid #479fd4;
+            white-space: nowrap;
+        }
+
+        .news-list-item .news-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .back-btn {
+            background: #2a7eb0;
+            border: none;
+            color: white;
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 14px 30px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            cursor: pointer;
+            border-bottom: 5px solid #104e75;
+            margin: 0 auto 20px;
+            width: fit-content;
+            border: 1px solid #8ec9ff;
+        }
+
+        .back-btn:active {
+            transform: translateY(3px);
+            border-bottom-width: 2px;
+        }
+
+        .close-modal {
+            background: #2a7eb0;
+            border: none;
+            color: white;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 16px 36px;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            cursor: pointer;
+            border-bottom: 6px solid #104e75;
+            margin: 0 auto;
+            width: fit-content;
+            border: 1px solid #8ec9ff;
+        }
+
+        .close-modal:active {
+            transform: translateY(4px);
+            border-bottom-width: 2px;
+        }
+
+        .modal-article-date {
+            display: inline-block;
+            background: #1d4e69;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid #479fd4;
+            margin-bottom: 20px;
+        }
+
+        .modal-article-text {
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #e3f2ff;
+        }
+
+        .version-badge {
+            display: flex;
+            justify-content: center;
+            margin: 32px 0 24px;
+        }
+
+        .version-badge span {
+            background: #1b4f69;
+            padding: 14px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            border: 1px solid #4ea0d6;
+            box-shadow: 0 6px 0 #0f3b50;
+        }
+
+        .footer {
+            text-align: center;
+            color: #9dc1db;
+            padding: 16px 0 8px;
+            border-top: 2px solid #246a91;
+            font-weight: 500;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1d5b7c;
+            color: white;
+            padding: 16px 32px;
+            border-radius: 60px;
+            font-weight: 600;
+            box-shadow: 0 15px 30px #000000b3;
+            border: 1px solid #80c4ff;
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .toast.show {
+            display: flex;
+            animation: slideUp 0.25s;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translate(-50%, 20px); }
+            to { opacity: 1; transform: translate(-50%, 0); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>SNOWFUNE</h1>
+            <div class="tagline">
+                <i class="fas fa-snowflake"></i> АНАРХИЯ · СНЕГ <i class="fas fa-snowflake"></i>
+            </div>
+        </div>
+
+        <!-- IP -->
+        <div class="ip-block">
+            <div class="ip-label"><i class="fas fa-network-wired"></i> ПОДКЛЮЧЕНИЕ</div>
+            <div class="ip-address" id="ipAddress">в разработке</div>
+            <button class="copy-btn" id="copyBtn"><i class="fas fa-copy"></i> Копировать IP</button>
+        </div>
+
+        <!-- О сервере -->
+        <div class="card">
+            <div class="section-header">
+                <i class="fas fa-info-circle"></i>
+                <h2>О сервере</h2>
+            </div>
+            <div class="description-text">
+                ❄️ Snowfune — настоящая анархия в заснеженном мире. Полная свобода: гриферство, воровство, убийства. Без привата и правил (кроме запрета читов). Холодный хардкор ждёт тебя!
+            </div>
+            <div class="tag-group">
+                <span class="tag"><i class="fas fa-skull"></i> Анархия</span>
+                <span class="tag"><i class="fas fa-door-open"></i> Без привата</span>
+            </div>
+        </div>
+
+        <!-- Новости (краткий анонс + кнопка) -->
+        <div class="card">
+            <div class="section-header">
+                <i class="fas fa-newspaper"></i>
+                <h2>Новости</h2>
+            </div>
+            <div class="news-preview">
+                <div class="news-preview-title">Последние события</div>
+                <div class="news-preview-desc">Начало разработки бота, завершение, запуск. Все подробности — в разделе новостей.</div>
+                <div class="read-more-btn" id="openNewsListBtn"><i class="fas fa-book-open"></i> Читать все новости</div>
+            </div>
+        </div>
+
+        <!-- Кнопка правил -->
+        <button class="rules-btn" id="rulesBtn"><i class="fas fa-scroll"></i> ПРАВИЛА СЕРВЕРА</button>
+
+        <!-- Соцсети -->
+        <div class="card">
+            <div class="section-header">
+                <i class="fas fa-hashtag"></i>
+                <h2>Соцсети</h2>
+            </div>
+            <div class="social-grid">
+                <a href="https://t.me/snowfune" class="social-btn" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram"></i> Telegram</a>
+                <a href="#" class="social-btn" id="discordBtn"><i class="fab fa-discord"></i> Discord</a>
+                <a href="#" class="social-btn" id="vkBtn"><i class="fab fa-vk"></i> ВКонтакте</a>
+                <a href="#" class="social-btn" id="donateBtn"><i class="fas fa-ruble-sign"></i> Донат</a>
+            </div>
+            <div class="donate-note">
+                <i class="fas fa-gift"></i> Донат — покупка предметов и привилегий
+            </div>
+        </div>
+
+        <!-- Версия -->
+        <div class="version-badge">
+            <span><i class="fas fa-tag"></i> Версия 1.16.5-1.20.4</span>
+        </div>
+
+        <!-- Футер -->
+        <div class="footer">
+            <p>© 2026 SnowFune. Все права защищены.</p>
+        </div>
+    </div>
+
+    <!-- Модальное окно для списка новостей -->
+    <div class="modal" id="newsListModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-list"></i>
+                <h3>Все новости</h3>
+            </div>
+            <div class="news-list" id="newsListContainer">
+                <!-- будут заполнены из JS -->
+            </div>
+            <button class="close-modal" id="closeNewsListModal"><i class="fas fa-times"></i> Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно для полной новости -->
+    <div class="modal" id="newsArticleModal">
+        <div class="modal-content">
+            <button class="back-btn" id="backToNewsList"><i class="fas fa-arrow-left"></i> Назад</button>
+            <div class="modal-header">
+                <i class="fas fa-newspaper"></i>
+                <h3 id="articleModalTitle">Заголовок</h3>
+            </div>
+            <div class="modal-article-date" id="articleModalDate"></div>
+            <div class="modal-article-text" id="articleModalText"></div>
+            <button class="close-modal" id="closeArticleModal"><i class="fas fa-times"></i> Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно правил -->
+    <div class="modal" id="rulesModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <i class="fas fa-scroll"></i>
+                <h3>Правила</h3>
+            </div>
+            <ul style="list-style: none; margin-bottom: 30px;">
+                <li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-skull" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Анархия:</strong> разрешено гриферство, воровство, убийства.</li>
+                <li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-ban" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Запрещены:</strong> читы, дюпы, использование багов (бан без предупреждения).</li>
+                <li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-comment-slash" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Уважение:</strong> никаких оскорблений реальных людей и угроз.</li>
+                <li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-dragon" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Администрация:</strong> вмешивается только при нарушении п.2-3.</li>
+                <li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-snowflake" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Главное:</strong> получай удовольствие!</li>
+            </ul>
+            <button class="close-modal" id="closeRulesModal"><i class="fas fa-times"></i> Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Тосты -->
+    <div id="toast" class="toast"><i class="fas fa-info-circle"></i> <span id="toastMessage">...</span></div>
+
+    <script>
+        const toast = document.getElementById('toast');
+        const toastMsg = document.getElementById('toastMessage');
+
+        function showToast(message) {
+            toastMsg.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000);
+        }
+
+        // Данные новостей
+        const newsData = [
+            {
+                id: 1,
+                date: '01.03.2026',
+                title: 'Выпуск бота',
+                full: 'Наш Discord-бот официально запущен! Теперь ивенты и модерация полностью автоматизированы. Бот умеет проводить розыгрыши, кикать за читы и выдавать роли. Подробности в Discord.'
+            },
+            {
+                id: 2,
+                date: '28.02.2026',
+                title: 'Завершение разработки бота',
+                full: 'Разработка бота успешно завершена, проведено финальное тестирование. Все функции работают стабильно. Готовимся к запуску в ближайшие дни.'
+            },
+            {
+                id: 3,
+                date: '20.02.2026',
+                title: 'Начало разработки бота',
+                full: 'Мы приступили к созданию собственного Discord-бота для автоматизации ивентов и модерации. Планируем реализовать систему предупреждений, мутов и экономику. Следите за новостями!'
+            }
+        ];
+
+        // Элементы модальных окон
+        const newsListModal = document.getElementById('newsListModal');
+        const newsArticleModal = document.getElementById('newsArticleModal');
+        const rulesModal = document.getElementById('rulesModal');
+        const newsListContainer = document.getElementById('newsListContainer');
+        const openNewsListBtn = document.getElementById('openNewsListBtn');
+        const closeNewsList = document.getElementById('closeNewsListModal');
+        const backToNewsList = document.getElementById('backToNewsList');
+        const closeArticle = document.getElementById('closeArticleModal');
+        const articleTitle = document.getElementById('articleModalTitle');
+        const articleDate = document.getElementById('articleModalDate');
+        const articleText = document.getElementById('articleModalText');
+
+        // Заполнение списка новостей
+        function renderNewsList() {
+            newsListContainer.innerHTML = '';
+            newsData.forEach(news => {
+                const item = document.createElement('div');
+                item.className = 'news-list-item';
+                item.innerHTML = `
+                    <span class="news-date">${news.date}</span>
+                    <span class="news-title">${news.title}</span>
+                `;
+                item.addEventListener('click', () => {
+                    // Открыть статью
+                    articleTitle.textContent = news.title;
+                    articleDate.textContent = news.date;
+                    articleText.textContent = news.full;
+                    newsListModal.classList.remove('show');
+                    newsArticleModal.classList.add('show');
+                });
+                newsListContainer.appendChild(item);
+            });
+        }
+
+        // Открыть список новостей
+        openNewsListBtn.addEventListener('click', () => {
+            renderNewsList();
+            newsListModal.classList.add('show');
+        });
+
+        // Закрыть список новостей
+        closeNewsList.addEventListener('click', () => {
+            newsListModal.classList.remove('show');
+        });
+
+        // Назад из статьи к списку
+        backToNewsList.addEventListener('click', () => {
+            newsArticleModal.classList.remove('show');
+            newsListModal.classList.add('show');
+        });
+
+        // Закрыть статью
+        closeArticle.addEventListener('click', () => {
+            newsArticleModal.classList.remove('show');
+        });
+
+        // Правила
+        const rulesBtn = document.getElementById('rulesBtn');
+        const closeRules = document.getElementById('closeRulesModal');
+
+        rulesBtn.addEventListener('click', () => {
+            rulesModal.classList.add('show');
+        });
+
+        closeRules.addEventListener('click', () => {
+            rulesModal.classList.remove('show');
+        });
+
+        // Копирование IP
+        document.getElementById('copyBtn').addEventListener('click', () => {
+            showToast('IP появится позже');
+        });
+
+        // Соцсети
+        document.getElementById('discordBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('Discord появится позже');
+        });
+
+        document.getElementById('vkBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('ВКонтакте появится позже');
+        });
+
+        document.getElementById('donateBtn').addEventListener('click', (e) => {
+            e.preventDefault();
+            showToast('Донат (предметы и привилегии) появится позже');
+        });
+
+        // Закрытие модалок по клику на фон
+        [newsListModal, newsArticleModal, rulesModal].forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
