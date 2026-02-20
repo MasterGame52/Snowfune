@@ -11,7 +11,7 @@
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* (стили точно такие же, как в предыдущем ответе — не меняем) */
+        /* --- СТИЛИ (полностью идентичны предыдущей версии с анимациями) --- */
         * {
             margin: 0;
             padding: 0;
@@ -1120,7 +1120,7 @@
     <div id="toast" class="toast"><i class="fas fa-info-circle"></i> <span id="toastMessage">...</span></div>
 
     <script>
-        // Создание 120 снежинок с разными символами
+        // Создание 120 снежинок
         function createSnowflakes() {
             const container = document.getElementById('snowflakes-container');
             const symbols = ['❄️', '❅', '❆', '✻', '✼', '❄️', '❅', '❆'];
@@ -1129,7 +1129,7 @@
                 snowflake.classList.add('snowflake');
                 snowflake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
                 snowflake.style.left = Math.random() * 100 + '%';
-                snowflake.style.animationDuration = Math.random() * 14 + 7 + 's'; // 7-21s
+                snowflake.style.animationDuration = Math.random() * 14 + 7 + 's';
                 snowflake.style.fontSize = Math.random() * 3.5 + 0.8 + 'rem';
                 snowflake.style.opacity = Math.random() * 0.7 + 0.3;
                 snowflake.style.animationDelay = Math.random() * 15 + 's';
@@ -1138,7 +1138,6 @@
         }
         createSnowflakes();
 
-        // Параллакс для снежинок
         window.addEventListener('scroll', () => {
             const scrollY = window.scrollY;
             document.querySelectorAll('.snowflake').forEach((flake, index) => {
@@ -1147,7 +1146,6 @@
             });
         });
 
-        // Параллакс для карточек при движении мыши (десктоп)
         if (window.matchMedia('(hover: hover)').matches) {
             document.querySelectorAll('.card').forEach(card => {
                 card.addEventListener('mousemove', (e) => {
@@ -1177,7 +1175,7 @@
             }, 2000);
         }
 
-        // Обновленные новости
+        // Данные новостей (исправленные)
         const newsData = [
             { id: 1, date: '01.03.2026', title: 'Выпуск бота', full: 'Наш бот запущен! Теперь Discord-сервер автоматизирован. Бот помогает с модерацией и проведением ивентов.' },
             { id: 2, date: '28.02.2026', title: 'Тестирование бота', full: 'Началось закрытое тестирование бота. Участники проверяют функционал и сообщают об ошибках.' },
