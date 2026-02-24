@@ -24,6 +24,16 @@
             box-sizing: border-box;
         }
 
+        /* Базовый размер шрифта для ПК (крупная версия) */
+        html {
+            font-size: 16px;
+        }
+
+        /* Мобильная версия — мельче */
+        html.mobile-view {
+            font-size: 13px; /* Уменьшено для более компактного вида */
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
             background: #0a1a24;
@@ -106,7 +116,7 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Карточки */
+        /* Карточки с улучшенными анимациями */
         .card {
             background: rgba(15, 40, 55, 0.85);
             backdrop-filter: blur(10px);
@@ -115,7 +125,7 @@
             margin-bottom: 30px;
             border: 1px solid rgba(120, 200, 255, 0.4);
             box-shadow: 0 30px 50px -20px #000, 0 0 0 1px rgba(100, 200, 255, 0.2), inset 0 1px 2px rgba(255,255,255,0.1);
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.5), box-shadow 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.5), box-shadow 0.4s ease, border-color 0.3s;
             animation: cardAppear 0.8s ease-out forwards;
             opacity: 0;
             position: relative;
@@ -137,9 +147,49 @@
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
 
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(100, 200, 255, 0.25) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+            z-index: 0;
+            animation: rotateGlow 20s linear infinite;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
+        .card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s;
+            pointer-events: none;
+        }
+
+        .card:hover::after {
+            left: 150%;
+        }
+
+        @keyframes rotateGlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
         .card:hover {
             transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 40px 70px -20px #000, 0 0 0 3px rgba(127, 196, 255, 0.8), 0 0 50px #3fa0e0;
+            box-shadow: 0 40px 70px -20px #000, 0 0 0 3px rgba(127, 196, 255, 0.9), 0 0 60px #3fa0e0;
             border-color: #c0e8ff;
         }
 
@@ -180,7 +230,7 @@
         .hero {
             text-align: center;
             margin-bottom: 32px;
-            animation: heroGlow 3s infinite ease-in-out;
+            animation: heroGlow 3s infinite ease-in-out, heroFloat 6s infinite;
             padding-top: 20px;
         }
 
@@ -188,6 +238,12 @@
             0% { filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.3)); }
             50% { filter: drop-shadow(0 0 70px rgba(100, 200, 255, 0.9)); }
             100% { filter: drop-shadow(0 0 20px rgba(100, 200, 255, 0.3)); }
+        }
+
+        @keyframes heroFloat {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0); }
         }
 
         .hero h1 {
@@ -326,10 +382,15 @@
             border-bottom: 6px solid #0e3e5c;
             transition: all 0.1s ease;
             border: 2px solid #7ac2ff;
-            animation: pulseButton 2s infinite;
+            animation: pulseButton 2s infinite, shimmer 3s infinite;
             position: relative;
             overflow: hidden;
             box-shadow: 0 0 30px #7ac2ff;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         .copy-btn::before {
@@ -741,6 +802,13 @@
             min-width: 65px;
             border: 1px solid #3d9fd9;
             box-shadow: 0 4px 0 #0f3b50;
+            transition: transform 0.2s;
+        }
+
+        .countdown-item:hover {
+            transform: scale(1.05);
+            border-color: #7fc4ff;
+            box-shadow: 0 0 15px #7fc4ff;
         }
 
         .countdown-value {
@@ -1017,7 +1085,7 @@
             100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
         }
 
-        /* Модальные окна */
+        /* Модальные окна (новости, правила) */
         .modal {
             display: none;
             position: fixed;
@@ -1142,7 +1210,92 @@
             margin-bottom: 20px;
         }
 
-        /* --- УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ (текст не переносится) --- */
+        /* Модальное окно выбора устройства */
+        .device-choice {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(5, 25, 40, 0.98);
+            backdrop-filter: blur(15px);
+            z-index: 4000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        .device-choice.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .device-choice-content {
+            background: #1b4f6a;
+            border-radius: 56px;
+            padding: 40px 30px;
+            max-width: 400px;
+            width: 100%;
+            border: 3px solid #5fb3f0;
+            box-shadow: 0 40px 70px #000, 0 0 80px #5fb3f0;
+            text-align: center;
+        }
+
+        .device-choice h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .device-choice p {
+            margin-bottom: 30px;
+            color: #b0e0ff;
+        }
+
+        .device-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .device-btn {
+            background: #22668a;
+            border: 2px solid #76bef5;
+            border-radius: 60px;
+            padding: 16px 32px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            transition: all 0.2s;
+            box-shadow: 0 6px 0 #0f3b50;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 160px;
+            justify-content: center;
+        }
+
+        .device-btn:hover {
+            background: #1f6890;
+            transform: translateY(-4px);
+            box-shadow: 0 10px 0 #0f3b50, 0 0 30px #76bef5;
+        }
+
+        .device-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 4px 0 #0f3b50;
+        }
+
+        .device-btn i {
+            font-size: 1.5rem;
+        }
+
+        /* --- УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ (ещё компактнее) --- */
         @media (max-width: 600px) {
             .hero h1 { font-size: 3.5rem; }
             .hero .tagline { font-size: 1rem; padding: 8px 20px; white-space: nowrap; }
@@ -1229,6 +1382,18 @@
 </head>
 <body>
     <div class="snowflakes-container" id="snowflakes-container"></div>
+
+    <!-- Модальное окно выбора устройства -->
+    <div class="device-choice" id="deviceChoice">
+        <div class="device-choice-content">
+            <h2><i class="fas fa-mobile-alt"></i> <i class="fas fa-laptop"></i></h2>
+            <p>Выберите версию для комфортного просмотра</p>
+            <div class="device-buttons">
+                <div class="device-btn" id="chooseMobile"><i class="fas fa-mobile-alt"></i> Телефон</div>
+                <div class="device-btn" id="chooseDesktop"><i class="fas fa-desktop"></i> Компьютер</div>
+            </div>
+        </div>
+    </div>
 
     <div class="container">
         <!-- Hero -->
@@ -1445,13 +1610,13 @@
             <span><i class="fas fa-tag"></i> Версия 1.16.5-1.20.4</span>
         </div>
 
-        <!-- Футэр -->
+        <!-- Футер -->
         <div class="footer">
             <p>© 2026 SnowFune. Все права защищены.</p>
         </div>
     </div>
 
-    <!-- Модальные окна -->
+    <!-- Модальные окна новостей и правил -->
     <div class="modal" id="newsListModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -1523,6 +1688,37 @@
             });
         });
 
+        // Элементы для выбора устройства
+        const deviceChoice = document.getElementById('deviceChoice');
+        const chooseMobile = document.getElementById('chooseMobile');
+        const chooseDesktop = document.getElementById('chooseDesktop');
+        const htmlElement = document.documentElement;
+
+        // Проверяем, есть ли сохранённый выбор
+        const savedChoice = localStorage.getItem('deviceChoice');
+        if (savedChoice === 'mobile') {
+            htmlElement.classList.add('mobile-view');
+        } else if (savedChoice === 'desktop') {
+            htmlElement.classList.remove('mobile-view');
+        } else {
+            // Показываем окно выбора
+            deviceChoice.classList.remove('hidden');
+        }
+
+        // Обработчики выбора
+        chooseMobile.addEventListener('click', () => {
+            htmlElement.classList.add('mobile-view');
+            localStorage.setItem('deviceChoice', 'mobile');
+            deviceChoice.classList.add('hidden');
+        });
+
+        chooseDesktop.addEventListener('click', () => {
+            htmlElement.classList.remove('mobile-view');
+            localStorage.setItem('deviceChoice', 'desktop');
+            deviceChoice.classList.add('hidden');
+        });
+
+        // Остальные функции
         const toast = document.getElementById('toast');
         const toastMsg = document.getElementById('toastMessage');
 
@@ -1714,4 +1910,3 @@
     </script>
 </body>
 </html>
-
