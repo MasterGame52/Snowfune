@@ -1142,10 +1142,10 @@
             margin-bottom: 20px;
         }
 
-        /* --- УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ (уменьшен текст) --- */
+        /* --- УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ (текст не переносится) --- */
         @media (max-width: 600px) {
             .hero h1 { font-size: 3.5rem; }
-            .hero .tagline { font-size: 1rem; padding: 8px 20px; }
+            .hero .tagline { font-size: 1rem; padding: 8px 20px; white-space: nowrap; }
             .ip-address { font-size: 1.8rem; }
             .copy-btn { font-size: 1.2rem; }
             .section-header h2 { font-size: 1.5rem; }
@@ -1161,64 +1161,64 @@
             .countdown-item { min-width: 55px; padding: 6px 8px; }
         }
 
-        @media (max-width: 480px) {
-            .card { padding: 24px 16px; } /* уменьшаем отступы внутри карточек */
-            .hero h1 { font-size: 2.8rem; }
-            .ip-address { font-size: 1.4rem; }
+        @media (max-width: 520px) {
+            .hero h1 { font-size: 3rem; }
+            .hero .tagline { font-size: 0.9rem; padding: 6px 16px; }
+            .ip-address { font-size: 1.5rem; }
             .copy-btn { font-size: 1rem; padding: 14px; gap: 8px; }
-            .section-header h2 { font-size: 1.3rem; }
-            .section-header i { font-size: 1.8rem; }
-            .description-text { font-size: 0.95rem; }
-            .tag { font-size: 0.8rem; padding: 6px 14px; }
-            .team-name { font-size: 1rem; }
-            .team-role { font-size: 0.75rem; }
-            .team-avatar { width: 60px; height: 60px; font-size: 2rem; }
-            .feature-item i { font-size: 2rem; }
-            .feature-item span { font-size: 0.85rem; }
-            .fact-text { font-size: 1rem; min-height: 70px; }
+        }
+
+        @media (max-width: 480px) {
+            .card { padding: 24px 16px; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero .tagline { font-size: 0.85rem; padding: 5px 12px; }
+            .ip-address { font-size: 1.3rem; }
+            .copy-btn { font-size: 0.9rem; padding: 12px; gap: 5px; }
+            .section-header h2 { font-size: 1.2rem; }
+            .section-header i { font-size: 1.6rem; }
+            .description-text { font-size: 0.9rem; }
+            .tag { font-size: 0.75rem; padding: 5px 12px; gap: 6px; }
+            .team-name { font-size: 1rem; white-space: nowrap; }
+            .team-role { font-size: 0.7rem; }
+            .team-avatar { width: 55px; height: 55px; font-size: 1.8rem; }
+            .feature-item i { font-size: 1.8rem; }
+            .feature-item span { font-size: 0.8rem; }
+            .fact-text { font-size: 0.95rem; min-height: 65px; }
             .fact-nav-btn { width: 40px; height: 40px; font-size: 1.2rem; }
-            .event-title { font-size: 1.2rem; }
-            .event-desc { font-size: 0.9rem; }
-            .countdown-value { font-size: 1.3rem; }
+            .event-title { font-size: 1.1rem; }
+            .event-desc { font-size: 0.85rem; }
+            .countdown-value { font-size: 1.2rem; }
             .countdown-item { min-width: 45px; padding: 4px 6px; }
-            .countdown-label { font-size: 0.7rem; }
-            .social-btn { font-size: 0.9rem; padding: 14px 8px; }
-            .faq-question { font-size: 1rem; padding: 16px 20px; }
-            .faq-answer { font-size: 0.9rem; }
-            .version-badge span { font-size: 0.9rem; padding: 10px 20px; }
-            .footer { font-size: 0.8rem; }
+            .countdown-label { font-size: 0.65rem; }
+            .social-btn { font-size: 0.8rem; padding: 12px 6px; white-space: nowrap; }
+            .faq-question { font-size: 0.9rem; padding: 14px 18px; }
+            .faq-answer { font-size: 0.85rem; }
+            .version-badge span { font-size: 0.8rem; padding: 8px 16px; }
+            .footer { font-size: 0.7rem; }
+        }
+
+        @media (max-width: 400px) {
+            .hero h1 { font-size: 2rem; }
+            .hero .tagline { font-size: 0.75rem; padding: 4px 10px; }
+            .ip-address { font-size: 1.1rem; }
+            .copy-btn { font-size: 0.8rem; padding: 10px; }
+            .team-name { font-size: 0.9rem; }
+            .feature-item span { font-size: 0.7rem; }
+            .social-btn { font-size: 0.7rem; padding: 10px 4px; }
         }
 
         @media (max-width: 360px) {
-            .hero h1 { font-size: 2.2rem; }
-            .ip-address { font-size: 1.2rem; }
-            .copy-btn { font-size: 0.9rem; padding: 12px; }
-            .section-header h2 { font-size: 1.1rem; }
-            .section-header i { font-size: 1.5rem; }
-            .description-text { font-size: 0.85rem; }
-            .tag { font-size: 0.7rem; padding: 4px 10px; }
-            .team-name { font-size: 0.9rem; }
-            .team-role { font-size: 0.7rem; }
-            .feature-item span { font-size: 0.8rem; }
-            .fact-text { font-size: 0.9rem; }
+            .hero h1 { font-size: 1.8rem; }
+            .hero .tagline { font-size: 0.7rem; padding: 4px 8px; }
+            .ip-address { font-size: 1rem; }
+            .copy-btn { font-size: 0.7rem; padding: 8px; }
+            .team-name { font-size: 0.8rem; }
+            .team-role { font-size: 0.6rem; }
+            .feature-item span { font-size: 0.65rem; }
+            .fact-text { font-size: 0.85rem; }
             .event-title { font-size: 1rem; }
             .countdown-value { font-size: 1rem; }
-            .countdown-item { min-width: 40px; }
-            .countdown-label { font-size: 0.6rem; }
-        }
-
-        @media (max-width: 320px) {
-            .hero h1 { font-size: 1.8rem; }
-            .ip-address { font-size: 1rem; }
-            .copy-btn { font-size: 0.8rem; padding: 10px; }
-            .section-header h2 { font-size: 1rem; }
-            .section-header i { font-size: 1.3rem; }
-            .description-text { font-size: 0.8rem; }
-            .tag { font-size: 0.65rem; padding: 4px 8px; }
-            .team-name { font-size: 0.85rem; }
-            .team-role { font-size: 0.65rem; }
-            .feature-item span { font-size: 0.75rem; }
-            .fact-text { font-size: 0.85rem; }
+            .countdown-item { min-width: 38px; padding: 3px 4px; }
         }
 
         /* Отключение сложных анимаций на слабых устройствах */
