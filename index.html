@@ -24,14 +24,8 @@
             box-sizing: border-box;
         }
 
-        /* Базовый размер шрифта для ПК (крупная версия) */
         html {
             font-size: 16px;
-        }
-
-        /* Мобильная версия — мельче */
-        html.mobile-view {
-            font-size: 13px; /* Уменьшено для более компактного вида */
         }
 
         body {
@@ -48,7 +42,6 @@
             overflow-x: hidden;
         }
 
-        /* Анимированный фон */
         body::before {
             content: '';
             position: fixed;
@@ -69,7 +62,6 @@
             100% { background-position: 10% 10%, -5% 5%, 0% 0%; }
         }
 
-        /* Снежинки */
         .snowflakes-container {
             position: fixed;
             top: 0;
@@ -116,7 +108,6 @@
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
 
-        /* Карточки с улучшенными анимациями */
         .card {
             background: rgba(15, 40, 55, 0.85);
             backdrop-filter: blur(10px);
@@ -198,6 +189,12 @@
             align-items: center;
             gap: 16px;
             margin-bottom: 28px;
+            animation: slideInHeader 0.5s ease-out;
+        }
+
+        @keyframes slideInHeader {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         .section-header i {
@@ -225,6 +222,13 @@
             background-clip: text;
             border-left: 5px solid #7fc4ff;
             padding-left: 16px;
+            animation: pulseText 3s infinite;
+        }
+
+        @keyframes pulseText {
+            0% { text-shadow: 0 0 2px #7fc4ff; }
+            50% { text-shadow: 0 0 15px #7fc4ff; }
+            100% { text-shadow: 0 0 2px #7fc4ff; }
         }
 
         .hero {
@@ -388,6 +392,14 @@
             box-shadow: 0 0 30px #7ac2ff;
         }
 
+        .copy-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .copy-btn:hover i {
+            transform: rotate(360deg) scale(1.2);
+        }
+
         @keyframes shimmer {
             0% { background-position: 0% 50%; }
             100% { background-position: 200% 50%; }
@@ -468,7 +480,7 @@
             transform: rotate(360deg) scale(1.3);
         }
 
-        /* --- БЛОК КОМАНДЫ (ПЕРЕДЕЛАН С НУЛЯ) --- */
+        /* --- БЛОК КОМАНДЫ --- */
         .team-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -571,9 +583,21 @@
 
         .team-social a:hover {
             background: #1f6890;
-            transform: translateY(-3px);
+            transform: translateY(-3px) scale(1.1);
             color: white;
             box-shadow: 0 0 20px #7fc4ff;
+        }
+
+        .team-social a:hover i {
+            animation: shake 0.3s ease;
+        }
+
+        @keyframes shake {
+            0% { transform: rotate(0deg); }
+            25% { transform: rotate(10deg); }
+            50% { transform: rotate(-10deg); }
+            75% { transform: rotate(5deg); }
+            100% { transform: rotate(0deg); }
         }
 
         /* Преимущества */
@@ -728,6 +752,13 @@
             background: #ffd966;
             transform: scale(1.3);
             box-shadow: 0 0 10px #ffd966;
+            animation: dotPulse 1s infinite;
+        }
+
+        @keyframes dotPulse {
+            0% { box-shadow: 0 0 0 0 #ffd966; }
+            70% { box-shadow: 0 0 10px 5px #ffd966; }
+            100% { box-shadow: 0 0 0 0 #ffd966; }
         }
 
         /* ГЛАВНЫЙ ИВЕНТ + ТАЙМЕР */
@@ -766,8 +797,8 @@
             background: #ffd966;
             color: #0a1a24;
             font-weight: 700;
-            font-size: 1rem;
-            padding: 5px 12px;
+            font-size: 1.2rem;
+            padding: 6px 16px;
             border-radius: 30px;
             display: inline-block;
             margin-bottom: 15px;
@@ -815,6 +846,13 @@
             font-size: 2rem;
             font-weight: 800;
             color: #ffd966;
+            animation: countdownPulse 1s infinite;
+        }
+
+        @keyframes countdownPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); text-shadow: 0 0 10px #ffd966; }
+            100% { transform: scale(1); }
         }
 
         .countdown-label {
@@ -1051,6 +1089,29 @@
             font-weight: 500;
         }
 
+        .footer p {
+            margin-bottom: 4px;
+        }
+
+        .footer .mojang-disclaimer {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
+        .footer .easter-egg {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 8px;
+            color: #7fc4ff;
+            cursor: default;
+            transition: opacity 0.3s;
+        }
+
+        .footer .easter-egg:hover {
+            opacity: 1;
+            text-shadow: 0 0 5px #7fc4ff;
+        }
+
         .toast {
             position: fixed;
             bottom: 30px;
@@ -1085,7 +1146,7 @@
             100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
         }
 
-        /* Модальные окна (новости, правила) */
+        /* Модальные окна */
         .modal {
             display: none;
             position: fixed;
@@ -1210,92 +1271,7 @@
             margin-bottom: 20px;
         }
 
-        /* Модальное окно выбора устройства */
-        .device-choice {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(5, 25, 40, 0.98);
-            backdrop-filter: blur(15px);
-            z-index: 4000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            opacity: 1;
-            transition: opacity 0.3s;
-        }
-
-        .device-choice.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .device-choice-content {
-            background: #1b4f6a;
-            border-radius: 56px;
-            padding: 40px 30px;
-            max-width: 400px;
-            width: 100%;
-            border: 3px solid #5fb3f0;
-            box-shadow: 0 40px 70px #000, 0 0 80px #5fb3f0;
-            text-align: center;
-        }
-
-        .device-choice h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .device-choice p {
-            margin-bottom: 30px;
-            color: #b0e0ff;
-        }
-
-        .device-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .device-btn {
-            background: #22668a;
-            border: 2px solid #76bef5;
-            border-radius: 60px;
-            padding: 16px 32px;
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: white;
-            cursor: pointer;
-            transition: all 0.2s;
-            box-shadow: 0 6px 0 #0f3b50;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 160px;
-            justify-content: center;
-        }
-
-        .device-btn:hover {
-            background: #1f6890;
-            transform: translateY(-4px);
-            box-shadow: 0 10px 0 #0f3b50, 0 0 30px #76bef5;
-        }
-
-        .device-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 4px 0 #0f3b50;
-        }
-
-        .device-btn i {
-            font-size: 1.5rem;
-        }
-
-        /* --- УЛУЧШЕННАЯ АДАПТАЦИЯ ДЛЯ ТЕЛЕФОНОВ (ещё компактнее) --- */
+        /* Адаптация для телефонов */
         @media (max-width: 600px) {
             .hero h1 { font-size: 3.5rem; }
             .hero .tagline { font-size: 1rem; padding: 8px 20px; white-space: nowrap; }
@@ -1374,7 +1350,6 @@
             .countdown-item { min-width: 38px; padding: 3px 4px; }
         }
 
-        /* Отключение сложных анимаций на слабых устройствах */
         @media (prefers-reduced-motion: reduce) {
             * { animation-duration: 0.01s !important; transition-duration: 0.01s !important; }
         }
@@ -1382,18 +1357,6 @@
 </head>
 <body>
     <div class="snowflakes-container" id="snowflakes-container"></div>
-
-    <!-- Модальное окно выбора устройства -->
-    <div class="device-choice" id="deviceChoice">
-        <div class="device-choice-content">
-            <h2><i class="fas fa-mobile-alt"></i> <i class="fas fa-laptop"></i></h2>
-            <p>Выберите версию для комфортного просмотра</p>
-            <div class="device-buttons">
-                <div class="device-btn" id="chooseMobile"><i class="fas fa-mobile-alt"></i> Телефон</div>
-                <div class="device-btn" id="chooseDesktop"><i class="fas fa-desktop"></i> Компьютер</div>
-            </div>
-        </div>
-    </div>
 
     <div class="container">
         <!-- Hero -->
@@ -1439,7 +1402,7 @@
             </div>
         </div>
 
-        <!-- Команда (исправленная) -->
+        <!-- Команда -->
         <div class="card">
             <div class="section-header">
                 <i class="fas fa-users"></i>
@@ -1500,7 +1463,7 @@
             <div class="facts-container">
                 <div class="fact-card" id="factCard">
                     <div class="fact-icon"><i class="fas fa-calendar-alt"></i></div>
-                    <div class="fact-text" id="factText">Сервер откроется 1 июня 2026</div>
+                    <div class="fact-text" id="factText">Сервер откроется в 2026 году</div>
                     <div class="fact-nav">
                         <div class="fact-nav-btn" id="prevFact"><i class="fas fa-chevron-left"></i></div>
                         <div class="fact-nav-btn" id="nextFact"><i class="fas fa-chevron-right"></i></div>
@@ -1523,7 +1486,7 @@
             </div>
             <div class="events-grid">
                 <div class="event-card">
-                    <span class="event-date">1 июня 2026</span>
+                    <span class="event-date">2026 год</span>
                     <div class="event-title">Открытие сервера</div>
                     <div class="event-desc">Долгожданное открытие Snowfune! Готовься к анархии и холоду.</div>
                     <div class="countdown" id="countdown">
@@ -1610,9 +1573,11 @@
             <span><i class="fas fa-tag"></i> Версия 1.16.5-1.20.4</span>
         </div>
 
-        <!-- Футер -->
+        <!-- Футер с пасхалкой -->
         <div class="footer">
             <p>© 2026 SnowFune. Все права защищены.</p>
+            <p class="mojang-disclaimer">Not affiliated with Mojang AB.</p>
+            <p class="easter-egg">Made by Hewi</p>
         </div>
     </div>
 
@@ -1688,37 +1653,6 @@
             });
         });
 
-        // Элементы для выбора устройства
-        const deviceChoice = document.getElementById('deviceChoice');
-        const chooseMobile = document.getElementById('chooseMobile');
-        const chooseDesktop = document.getElementById('chooseDesktop');
-        const htmlElement = document.documentElement;
-
-        // Проверяем, есть ли сохранённый выбор
-        const savedChoice = localStorage.getItem('deviceChoice');
-        if (savedChoice === 'mobile') {
-            htmlElement.classList.add('mobile-view');
-        } else if (savedChoice === 'desktop') {
-            htmlElement.classList.remove('mobile-view');
-        } else {
-            // Показываем окно выбора
-            deviceChoice.classList.remove('hidden');
-        }
-
-        // Обработчики выбора
-        chooseMobile.addEventListener('click', () => {
-            htmlElement.classList.add('mobile-view');
-            localStorage.setItem('deviceChoice', 'mobile');
-            deviceChoice.classList.add('hidden');
-        });
-
-        chooseDesktop.addEventListener('click', () => {
-            htmlElement.classList.remove('mobile-view');
-            localStorage.setItem('deviceChoice', 'desktop');
-            deviceChoice.classList.add('hidden');
-        });
-
-        // Остальные функции
         const toast = document.getElementById('toast');
         const toastMsg = document.getElementById('toastMessage');
 
@@ -1743,7 +1677,7 @@
             });
         });
 
-        // Данные новостей (обновлённые)
+        // Данные новостей
         const newsData = [
             { id: 1, date: '01.03.2026', title: 'Выпуск бота', full: 'Наш бот запущен! Теперь Discord-сервер автоматизирован. Бот помогает с модерацией и проведением ивентов.' },
             { id: 2, date: '26.02.2026', title: 'Тестирование бота', full: 'С 26 по 28 февраля проходит открытое тестирование бота. Приглашаем всех проверить его функции и сообщить об ошибках.' },
@@ -1846,7 +1780,7 @@
 
         // Карусель фактов
         const facts = [
-            "Сервер откроется 1 июня 2026",
+            "Сервер откроется в 2026 году",
             "Дружеское сообщество",
             "Собственный Discord-бот",
             "Уникальная снежная генерация мира"
@@ -1884,9 +1818,9 @@
             });
         });
 
-        // Таймер до 1 июня 2026
+        // Таймер до 1 января 2027 (для демонстрации, т.к. дата не определена)
         function updateCountdown() {
-            const targetDate = new Date(2026, 5, 1, 0, 0, 0);
+            const targetDate = new Date(2027, 0, 1, 0, 0, 0);
             const now = new Date();
             const diff = targetDate - now;
             if (diff <= 0) {
