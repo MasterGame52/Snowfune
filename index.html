@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
 <title>Snowfune — анархия в снегах</title>
-<!-- Open Graph мета-теги -->
+<!-- Open Graph -->
 <meta property="og:title" content="Snowfune — анархия в снегах">
 <meta property="og:description" content="Snowfune — настоящая анархия в заснеженном мире. Полная свобода: гриферство, воровство, убийства. Без привата и правил (кроме запрета читов).">
 <meta property="og:type" content="website">
@@ -51,35 +51,13 @@ radial-gradient(circle at 80% 70%, #1f4f1f 0%, transparent 40%),
 repeating-linear-gradient(45deg, rgba(150, 255, 150, 0.03) 0px, rgba(150, 255, 150, 0.03) 2px, transparent 2px, transparent 10px);
 pointer-events: none;
 z-index: 0;
-animation: bgShift 30s infinite alternate, bgGlow 5s infinite;
+animation: bgShift 30s infinite alternate;
 }
 @keyframes bgShift {
 0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
 100% { background-position: 10% 10%, -5% 5%, 0% 0%; }
 }
-@keyframes bgGlow {
-0% { filter: brightness(1); }
-50% { filter: brightness(1.08); }
-100% { filter: brightness(1); }
-}
-/* Плавающие частицы (цветочная пыльца) */
-.floating-particle {
-position: fixed;
-width: 6px;
-height: 6px;
-background: rgba(255, 200, 100, 0.4);
-border-radius: 50%;
-pointer-events: none;
-z-index: 1;
-animation: floatParticle 15s linear infinite;
-}
-@keyframes floatParticle {
-0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
-10% { opacity: 0.6; }
-90% { opacity: 0.6; }
-100% { transform: translateY(110vh) translateX(30px) rotate(360deg); opacity: 0; }
-}
-/* Цветы (основные) */
+/* Падающие цветы (40 шт) */
 .flowers-container {
 position: fixed;
 top: 0;
@@ -120,7 +98,7 @@ animation: containerPop 1s cubic-bezier(0.2, 0.9, 0.3, 1.2);
 70% { transform: scale(1.02) translateY(-5px); }
 100% { opacity: 1; transform: scale(1) translateY(0); }
 }
-/* Карточки с весенними цветами */
+/* Карточки */
 .card {
 background: rgba(20, 50, 20, 0.85);
 backdrop-filter: blur(10px);
@@ -144,6 +122,7 @@ overflow: hidden;
 .card:nth-child(7) { animation-delay: 0.4s; }
 .card:nth-child(8) { animation-delay: 0.45s; }
 .card:nth-child(9) { animation-delay: 0.5s; }
+.card:nth-child(10) { animation-delay: 0.55s; } 
 @keyframes cardAppear {
 0% { opacity: 0; transform: translateY(30px) scale(0.95); }
 100% { opacity: 1; transform: translateY(0) scale(1); }
@@ -475,7 +454,7 @@ background: #2f7f2f;
 .tag:hover i {
 transform: rotate(360deg) scale(1.3);
 }
-/* --- БЛОК КОМАНДЫ --- */
+/* Команда */
 .team-grid {
 display: grid;
 grid-template-columns: repeat(2, 1fr);
@@ -591,7 +570,7 @@ animation: shake 0.3s ease;
 75% { transform: rotate(5deg); }
 100% { transform: rotate(0deg); }
 }
-/* Telegram канал вместо новостей */
+/* Telegram канал с эмодзи */
 .telegram-channel {
 background: linear-gradient(135deg, #1f5f1f, #2f7f2f);
 border-radius: 40px;
@@ -703,7 +682,7 @@ font-weight: 600;
 font-size: 1.1rem;
 color: white;
 }
-/* ИНТЕРЕСНЫЕ ФАКТЫ (карусель) */
+/* Факты (карусель) */
 .facts-container {
 display: flex;
 flex-direction: column;
@@ -809,7 +788,7 @@ animation: dotPulse 1s infinite;
 70% { box-shadow: 0 0 10px 5px #ffd966; }
 100% { box-shadow: 0 0 0 0 #ffd966; }
 }
-/* ГЛАВНЫЙ ИВЕНТ + ТАЙМЕР */
+/* Ивент + таймер (до 31.12.2026) */
 .events-grid {
 display: grid;
 grid-template-columns: 1fr;
@@ -1117,7 +1096,6 @@ animation: easterEggGlow 3s infinite;
 opacity: 1;
 text-shadow: 0 0 15px #a0ff80;
 }
-/* Пасхалка: скрытое сообщение IWEH */
 .footer .hidden-easter {
 font-size: 0.7rem;
 opacity: 0;
@@ -1167,7 +1145,6 @@ animation: toastPop 0.3s;
 80% { transform: translate(-50%, -2px) scale(1.02); }
 100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
 }
-/* Модальные окна */
 .modal {
 display: none;
 position: fixed;
@@ -1250,10 +1227,33 @@ font-size: 0.9rem;
 border: 2px solid #60e060;
 margin-bottom: 20px;
 }
-/* Адаптация для телефонов */
+/* Мобильная оптимизация */
 @media (max-width: 600px) {
+.card, .ip-block, .hero .tagline {
+backdrop-filter: none;
+background: rgba(20, 50, 20, 0.95);
+}
+.hero .tagline {
+background: rgba(20, 60, 20, 0.95);
+}
+.hero h1, .hero .tagline, .ip-block, .copy-btn, .fact-card, .event-card,
+.countdown-item, .rules-btn, .social-btn, .version-badge span {
+animation: none;
+}
+.copy-btn {
+box-shadow: 0 0 15px #80ff80;
+border-bottom: 4px solid #0f3f0f;
+}
+.ip-address {
+animation: none;
+}
+.card:hover .section-header i,
+.social-btn:hover i,
+.tag:hover i {
+transform: none;
+}
 .hero h1 { font-size: 3.5rem; }
-.hero .tagline { font-size: 1rem; padding: 8px 20px; white-space: nowrap; }
+.hero .tagline { font-size: 1rem; padding: 8px 20px; }
 .ip-address { font-size: 1.8rem; }
 .copy-btn { font-size: 1.2rem; }
 .section-header h2 { font-size: 1.5rem; }
@@ -1284,7 +1284,7 @@ margin-bottom: 20px;
 .section-header i { font-size: 1.6rem; }
 .description-text { font-size: 0.9rem; }
 .tag { font-size: 0.75rem; padding: 5px 12px; gap: 6px; }
-.team-name { font-size: 1rem; white-space: nowrap; }
+.team-name { font-size: 1rem; }
 .team-role { font-size: 0.7rem; }
 .team-avatar { width: 55px; height: 55px; font-size: 1.8rem; }
 .feature-item i { font-size: 1.8rem; }
@@ -1296,7 +1296,7 @@ margin-bottom: 20px;
 .countdown-value { font-size: 1.2rem; }
 .countdown-item { min-width: 45px; padding: 4px 6px; }
 .countdown-label { font-size: 0.65rem; }
-.social-btn { font-size: 0.8rem; padding: 12px 6px; white-space: nowrap; }
+.social-btn { font-size: 0.8rem; padding: 12px 6px; }
 .faq-question { font-size: 0.9rem; padding: 14px 18px; }
 .faq-answer { font-size: 0.85rem; }
 .version-badge span { font-size: 0.8rem; padding: 8px 16px; }
@@ -1359,11 +1359,27 @@ margin-bottom: 20px;
 <span class="tag"><i class="fas fa-door-open"></i> Без привата</span>
 </div>
 </div>
-<!-- Telegram канал вместо новостей -->
+
+<!-- Правила сервера (отдельный блок) -->
+<div class="card">
+<div class="section-header">
+<i class="fas fa-scroll"></i>
+<h2>📜 Правила сервера</h2>
+</div>
+<ul style="list-style: none; margin-bottom: 0; padding-left: 0;">
+<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-skull" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Анархия:</strong> разрешено гриферство, воровство, убийства.</li>
+<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-ban" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Запрещены:</strong> читы, дюпы, использование багов (бан без предупреждения).</li>
+<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-comment-slash" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Уважение:</strong> никаких оскорблений реальных людей и угроз.</li>
+<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-dragon" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Администрация:</strong> вмешивается только при нарушении п.2-3.</li>
+<li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-leaf" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Главное:</strong> получай удовольствие!</li>
+</ul>
+</div>
+
+<!-- НОВОСТИ с эмодзи -->
 <div class="card">
 <div class="section-header">
 <i class="fab fa-telegram"></i>
-<h2>Новости</h2>
+<h2>📢 Новости</h2>
 </div>
 <div class="telegram-channel">
 <div class="telegram-icon"><i class="fab fa-telegram-plane"></i></div>
@@ -1373,6 +1389,7 @@ margin-bottom: 20px;
 </a>
 </div>
 </div>
+
 <!-- Команда -->
 <div class="card">
 <div class="section-header">
@@ -1398,6 +1415,7 @@ margin-bottom: 20px;
 </div>
 </div>
 </div>
+
 <!-- Наши преимущества -->
 <div class="card">
 <div class="section-header">
@@ -1423,7 +1441,8 @@ margin-bottom: 20px;
 </div>
 </div>
 </div>
-<!-- БЛОК: ИНТЕРЕСНЫЕ ФАКТЫ -->
+
+<!-- Факты (карусель) -->
 <div class="card">
 <div class="section-header">
 <i class="fas fa-lightbulb"></i>
@@ -1446,7 +1465,8 @@ margin-bottom: 20px;
 </div>
 </div>
 </div>
-<!-- ГЛАВНЫЙ ИВЕНТ + ТАЙМЕР -->
+
+<!-- ГЛАВНЫЙ ИВЕНТ (ТАЙМЕР ДО 31.12.2026) -->
 <div class="card">
 <div class="section-header">
 <i class="fas fa-calendar-check"></i>
@@ -1454,9 +1474,9 @@ margin-bottom: 20px;
 </div>
 <div class="events-grid">
 <div class="event-card">
-<span class="event-date">2026 год</span>
+<span class="event-date">31 декабря 2026</span>
 <div class="event-title">Открытие сервера</div>
-<div class="event-desc">Долгожданное открытие Snowfune! Готовься к анархии и холоду.</div>
+<div class="event-desc">До открытия Snowfune осталось:</div>
 <div class="countdown" id="countdown">
 <div class="countdown-item">
 <div class="countdown-value" id="days">0</div>
@@ -1478,8 +1498,10 @@ margin-bottom: 20px;
 </div>
 </div>
 </div>
-<!-- Правила -->
-<button class="rules-btn" id="rulesBtn"><i class="fas fa-scroll"></i> ПРАВИЛА СЕРВЕРА</button>
+
+<!-- Кнопка подробных правил (модалка) -->
+<button class="rules-btn" id="rulesBtn"><i class="fas fa-scroll"></i> ПРАВИЛА СЕРВЕРА (ПОДРОБНО)</button>
+
 <!-- Соцсети -->
 <div class="card">
 <div class="section-header">
@@ -1496,7 +1518,8 @@ margin-bottom: 20px;
 <i class="fas fa-gift"></i> Донат — покупка предметов и привилегий
 </div>
 </div>
-<!-- FAQ - Часто задаваемые вопросы -->
+
+<!-- FAQ -->
 <div class="card">
 <div class="section-header">
 <i class="fas fa-question-circle"></i>
@@ -1532,11 +1555,13 @@ margin-bottom: 20px;
 </div>
 </div>
 </div>
+
 <!-- Версия -->
 <div class="version-badge">
 <span><i class="fas fa-tag"></i> Версия 1.16.5-1.20.4</span>
 </div>
-<!-- Футер с пасхалками -->
+
+<!-- Футер -->
 <div class="footer" id="footer">
 <p>© 2026 SnowFune. Все права защищены.</p>
 <p class="mojang-disclaimer">Not affiliated with Mojang AB.</p>
@@ -1544,12 +1569,13 @@ margin-bottom: 20px;
 <p class="hidden-easter">IWEH</p>
 </div>
 </div>
-<!-- Модальные окна правил -->
+
+<!-- Модальное окно правил (подробные) -->
 <div class="modal" id="rulesModal">
 <div class="modal-content">
 <div class="modal-header">
 <i class="fas fa-scroll"></i>
-<h3>Правила</h3>
+<h3>Правила (подробно)</h3>
 </div>
 <ul style="list-style: none; margin-bottom: 30px;">
 <li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-skull" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Анархия:</strong> разрешено гриферство, воровство, убийства.</li>
@@ -1561,13 +1587,14 @@ margin-bottom: 20px;
 <button class="close-modal" id="closeRulesModal"><i class="fas fa-times"></i> Закрыть</button>
 </div>
 </div>
+
 <div id="toast" class="toast"><i class="fas fa-info-circle"></i> <span id="toastMessage">...</span></div>
+
 <script>
-// Создание цветов/лепестков (150 шт)
 function createFlowers() {
 const container = document.getElementById('flowers-container');
 const symbols = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🍀', '🌿'];
-for (let i = 0; i < 150; i++) {
+for (let i = 0; i < 40; i++) {
 const flower = document.createElement('div');
 flower.classList.add('flower');
 flower.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
@@ -1580,37 +1607,15 @@ container.appendChild(flower);
 }
 }
 createFlowers();
-// Создание дополнительных плавающих частиц (пыльца)
-function createParticles() {
-for (let i = 0; i < 50; i++) {
-const particle = document.createElement('div');
-particle.classList.add('floating-particle');
-particle.style.left = Math.random() * 100 + '%';
-particle.style.animationDuration = Math.random() * 20 + 10 + 's';
-particle.style.animationDelay = Math.random() * 10 + 's';
-particle.style.width = Math.random() * 6 + 2 + 'px';
-particle.style.height = particle.style.width;
-document.body.appendChild(particle);
-}
-}
-createParticles();
-// Параллакс цветов
-window.addEventListener('scroll', () => {
-const scrollY = window.scrollY;
-document.querySelectorAll('.flower').forEach((flower, index) => {
-const speed = 0.1 + (index % 5) * 0.02;
-flower.style.transform = `translateY(${scrollY * speed}px)`;
-});
-});
+
 const toast = document.getElementById('toast');
 const toastMsg = document.getElementById('toastMessage');
 function showToast(message) {
 toastMsg.textContent = message;
 toast.classList.add('show');
-setTimeout(() => {
-toast.classList.remove('show');
-}, 2000);
+setTimeout(() => toast.classList.remove('show'), 2000);
 }
+
 // FAQ аккордеон
 const faqItems = document.querySelectorAll('.faq-item');
 faqItems.forEach(item => {
@@ -1618,49 +1623,24 @@ const question = item.querySelector('.faq-question');
 question.addEventListener('click', () => {
 const isActive = item.classList.contains('active');
 faqItems.forEach(i => i.classList.remove('active'));
-if (!isActive) {
-item.classList.add('active');
-}
+if (!isActive) item.classList.add('active');
 });
 });
-// Кнопки соцсетей и IP
-document.getElementById('copyBtn').addEventListener('click', () => {
-showToast('IP появится позже');
-});
-document.getElementById('discordBtn').addEventListener('click', (e) => {
-e.preventDefault();
-showToast('Discord появится позже');
-});
-document.getElementById('vkBtn').addEventListener('click', (e) => {
-e.preventDefault();
-showToast('ВКонтакте появится позже');
-});
-document.getElementById('donateBtn').addEventListener('click', (e) => {
-e.preventDefault();
-showToast('Донат (предметы и привилегии) появится позже');
-});
-// Закрытие модалок по клику на фон
+
+// Кнопки
+document.getElementById('copyBtn').addEventListener('click', () => showToast('IP появится позже'));
+document.getElementById('discordBtn').addEventListener('click', (e) => { e.preventDefault(); showToast('Discord появится позже'); });
+document.getElementById('vkBtn').addEventListener('click', (e) => { e.preventDefault(); showToast('ВКонтакте появится позже'); });
+document.getElementById('donateBtn').addEventListener('click', (e) => { e.preventDefault(); showToast('Донат появится позже'); });
+
+// Модалка правил
 const rulesModal = document.getElementById('rulesModal');
-rulesModal.addEventListener('click', (e) => {
-if (e.target === rulesModal) {
-rulesModal.classList.remove('show');
-}
-});
-const rulesBtn = document.getElementById('rulesBtn');
-const closeRules = document.getElementById('closeRulesModal');
-rulesBtn.addEventListener('click', () => {
-rulesModal.classList.add('show');
-});
-closeRules.addEventListener('click', () => {
-rulesModal.classList.remove('show');
-});
+rulesModal.addEventListener('click', (e) => { if (e.target === rulesModal) rulesModal.classList.remove('show'); });
+document.getElementById('rulesBtn').addEventListener('click', () => rulesModal.classList.add('show'));
+document.getElementById('closeRulesModal').addEventListener('click', () => rulesModal.classList.remove('show'));
+
 // Карусель фактов
-const facts = [
-"Сервер откроется в 2026 году",
-"Дружеское сообщество",
-"Собственный Telegram бот",
-"Уникальная снежная генерация мира"
-];
+const facts = ["Сервер откроется в 2026 году", "Дружеское сообщество", "Собственный Telegram бот", "Уникальная снежная генерация мира"];
 let currentFact = 0;
 const factText = document.getElementById('factText');
 const factIcon = document.querySelector('.fact-icon i');
@@ -1671,27 +1651,15 @@ function updateFact(index) {
 factText.textContent = facts[index];
 const icons = ['fa-calendar-alt', 'fa-users', 'fa-robot', 'fa-snowflake'];
 factIcon.className = `fas ${icons[index]}`;
-dots.forEach((dot, i) => {
-dot.classList.toggle('active', i === index);
-});
+dots.forEach((dot, i) => dot.classList.toggle('active', i === index));
 }
-prevBtn.addEventListener('click', () => {
-currentFact = (currentFact - 1 + facts.length) % facts.length;
-updateFact(currentFact);
-});
-nextBtn.addEventListener('click', () => {
-currentFact = (currentFact + 1) % facts.length;
-updateFact(currentFact);
-});
-dots.forEach((dot, index) => {
-dot.addEventListener('click', () => {
-currentFact = index;
-updateFact(currentFact);
-});
-});
-// Таймер до 1 января 2027 (для демонстрации)
+prevBtn.addEventListener('click', () => { currentFact = (currentFact - 1 + facts.length) % facts.length; updateFact(currentFact); });
+nextBtn.addEventListener('click', () => { currentFact = (currentFact + 1) % facts.length; updateFact(currentFact); });
+dots.forEach((dot, index) => dot.addEventListener('click', () => { currentFact = index; updateFact(currentFact); }));
+
+// Таймер до 31 декабря 2026
 function updateCountdown() {
-const targetDate = new Date(2027, 0, 1, 0, 0, 0);
+const targetDate = new Date(2026, 11, 31, 23, 59, 59);
 const now = new Date();
 const diff = targetDate - now;
 if (diff <= 0) {
@@ -1712,40 +1680,29 @@ document.getElementById('seconds').textContent = seconds;
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
-// Пасхалка: клик по футеру добавляет класс и показывает скрытое сообщение "IWEH"
+
+// Пасхалки
 const footer = document.getElementById('footer');
 let clickCount = 0;
 footer.addEventListener('click', () => {
 clickCount++;
 if (clickCount >= 3) {
 footer.classList.toggle('clicked');
-if (footer.classList.contains('clicked')) {
 showToast('🔍 IWEH');
-} else {
-showToast('🔍 IWEH');
-}
 clickCount = 0;
 }
 });
-// 🌸 НОВАЯ ПАСХАЛКА: Клик 3 раза на Hewi -> level1.html
 const hewiName = document.getElementById('hewiName');
 let hewiClickCount = 0;
 hewiName.addEventListener('click', () => {
 hewiClickCount++;
 if (hewiClickCount >= 3) {
 showToast('🔓 Секрет разблокирован!');
-setTimeout(() => {
-window.location.href = 'level1.html';
-}, 500);
-} else if (hewiClickCount === 1) {
-showToast(`Ещё ${3 - hewiClickCount} клика...`);
-} else if (hewiClickCount === 2) {
+setTimeout(() => window.location.href = 'level1.html', 500);
+} else {
 showToast(`Ещё ${3 - hewiClickCount} клик...`);
 }
-// Сброс счётчика через 3 секунды
-setTimeout(() => {
-hewiClickCount = 0;
-}, 3000);
+setTimeout(() => hewiClickCount = 0, 3000);
 });
 </script>
 </body>
