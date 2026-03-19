@@ -57,7 +57,7 @@ animation: bgShift 30s infinite alternate;
 0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
 100% { background-position: 10% 10%, -5% 5%, 0% 0%; }
 }
-/* Падающие цветы (40 шт) */
+/* Падающие цветы (уменьшено до 15) */
 .flowers-container {
 position: fixed;
 top: 0;
@@ -107,7 +107,7 @@ padding: 32px 24px;
 margin-bottom: 30px;
 border: 1px solid rgba(120, 255, 150, 0.4);
 box-shadow: 0 30px 50px -20px #000, 0 0 0 1px rgba(100, 255, 150, 0.2), inset 0 1px 2px rgba(255,255,255,0.1);
-transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.5), box-shadow 0.4s ease, border-color 0.3s;
+transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
 animation: cardAppear 0.8s ease-out forwards;
 opacity: 0;
 position: relative;
@@ -122,49 +122,13 @@ overflow: hidden;
 .card:nth-child(7) { animation-delay: 0.4s; }
 .card:nth-child(8) { animation-delay: 0.45s; }
 .card:nth-child(9) { animation-delay: 0.5s; }
-.card:nth-child(10) { animation-delay: 0.55s; } 
 @keyframes cardAppear {
 0% { opacity: 0; transform: translateY(30px) scale(0.95); }
 100% { opacity: 1; transform: translateY(0) scale(1); }
 }
-.card::before {
-content: '';
-position: absolute;
-top: -50%;
-left: -50%;
-width: 200%;
-height: 200%;
-background: radial-gradient(circle at center, rgba(100, 255, 150, 0.25) 0%, transparent 70%);
-opacity: 0;
-transition: opacity 0.6s ease;
-pointer-events: none;
-z-index: 0;
-animation: rotateGlow 20s linear infinite;
-}
-.card:hover::before {
-opacity: 1;
-}
-.card::after {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 50%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-transition: left 0.8s;
-pointer-events: none;
-}
-.card:hover::after {
-left: 150%;
-}
-@keyframes rotateGlow {
-from { transform: rotate(0deg); }
-to { transform: rotate(360deg); }
-}
 .card:hover {
-transform: translateY(-12px) scale(1.02);
-box-shadow: 0 40px 70px -20px #000, 0 0 0 3px rgba(127, 255, 150, 0.9), 0 0 60px #60e060;
+transform: translateY(-6px) scale(1.01);
+box-shadow: 0 40px 70px -20px #000, 0 0 0 2px rgba(127, 255, 150, 0.9), 0 0 40px #60e060;
 border-color: #c0ffc0;
 }
 .section-header {
@@ -186,18 +150,9 @@ background: linear-gradient(135deg, #b0ffb0, #ffffff);
 background-clip: text;
 filter: drop-shadow(0 0 12px #a0ff80);
 transition: transform 0.3s ease;
-animation: iconJiggle 4s infinite;
-}
-@keyframes iconJiggle {
-0%, 100% { transform: rotate(0deg); }
-5% { transform: rotate(5deg); }
-10% { transform: rotate(-5deg); }
-15% { transform: rotate(3deg); }
-20% { transform: rotate(0deg); }
 }
 .card:hover .section-header i {
-transform: rotate(360deg) scale(1.3);
-filter: drop-shadow(0 0 30px #a0ff80);
+transform: rotate(10deg) scale(1.1);
 }
 .section-header h2 {
 font-size: 2rem;
@@ -209,27 +164,16 @@ background: linear-gradient(to right, #fff, #d0ffd0, #a0ffa0);
 background-clip: text;
 border-left: 5px solid #a0ff80;
 padding-left: 16px;
-animation: pulseText 3s infinite;
-}
-@keyframes pulseText {
-0% { text-shadow: 0 0 2px #a0ff80; }
-50% { text-shadow: 0 0 15px #a0ff80; }
-100% { text-shadow: 0 0 2px #a0ff80; }
 }
 .hero {
 text-align: center;
 margin-bottom: 32px;
-animation: heroGlow 3s infinite ease-in-out, heroFloat 6s infinite;
+animation: heroFloat 6s infinite;
 padding-top: 20px;
-}
-@keyframes heroGlow {
-0% { filter: drop-shadow(0 0 20px rgba(100, 255, 150, 0.3)); }
-50% { filter: drop-shadow(0 0 70px rgba(100, 255, 150, 0.9)); }
-100% { filter: drop-shadow(0 0 20px rgba(100, 255, 150, 0.3)); }
 }
 @keyframes heroFloat {
 0% { transform: translateY(0); }
-50% { transform: translateY(-10px); }
+50% { transform: translateY(-5px); }
 100% { transform: translateY(0); }
 }
 .hero h1 {
@@ -243,20 +187,9 @@ background-clip: text;
 letter-spacing: -0.03em;
 margin-bottom: 8px;
 line-height: 1.1;
-animation: floatTitle 5s ease-in-out infinite, gradientShift 8s linear infinite;
 display: inline-block;
-text-shadow: 0 0 40px #a0ff80;
+text-shadow: 0 0 30px #a0ff80;
 word-break: break-word;
-}
-@keyframes floatTitle {
-0% { transform: translateY(0px); }
-50% { transform: translateY(-10px); }
-100% { transform: translateY(0px); }
-}
-@keyframes gradientShift {
-0% { background-position: 0% 50%; }
-50% { background-position: 100% 50%; }
-100% { background-position: 0% 50%; }
 }
 .hero .tagline {
 background: rgba(20, 60, 20, 0.7);
@@ -268,20 +201,14 @@ font-size: 1.2rem;
 font-weight: 500;
 border: 2px solid #60e060;
 color: #ffffff;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 30px #60e060;
-transition: all 0.3s ease;
-animation: tagPulse 2.5s infinite;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
+transition: all 0.2s ease;
 word-break: break-word;
 max-width: 100%;
 }
-@keyframes tagPulse {
-0% { border-color: #60e060; box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060; }
-50% { border-color: #a0ffa0; box-shadow: 0 8px 0 #0f3f0f, 0 0 50px #60e060; }
-100% { border-color: #60e060; box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060; }
-}
 .hero .tagline:hover {
-transform: scale(1.1) translateY(-5px);
-box-shadow: 0 13px 0 #0f3f0f, 0 0 70px #60e060;
+transform: scale(1.05) translateY(-3px);
+box-shadow: 0 10px 0 #0f3f0f, 0 0 30px #60e060;
 }
 .ip-block {
 background: rgba(20, 50, 20, 0.85);
@@ -289,18 +216,13 @@ backdrop-filter: blur(10px);
 border-radius: 60px;
 padding: 28px;
 border: 2px solid #60e060;
-box-shadow: 0 30px 50px -20px #000, 0 10px 0 #0f3f0f, 0 0 40px #60e060;
+box-shadow: 0 30px 50px -20px #000, 0 10px 0 #0f3f0f, 0 0 30px #60e060;
 transition: box-shadow 0.3s ease, transform 0.3s ease;
-animation: blockPulse 4s infinite;
 margin-bottom: 40px;
 }
-@keyframes blockPulse {
-0%, 100% { border-color: #60e060; box-shadow: 0 10px 0 #0f3f0f, 0 0 40px #60e060; }
-50% { border-color: #a0ffa0; box-shadow: 0 10px 0 #0f3f0f, 0 0 80px #60e060; }
-}
 .ip-block:hover {
-transform: translateY(-10px);
-box-shadow: 0 45px 70px -20px #000, 0 10px 0 #0f3f0f, 0 0 0 3px #60e060, 0 0 90px #60e060;
+transform: translateY(-5px);
+box-shadow: 0 45px 70px -20px #000, 0 10px 0 #0f3f0f, 0 0 0 2px #60e060, 0 0 60px #60e060;
 }
 .ip-label {
 font-size: 0.9rem;
@@ -311,11 +233,6 @@ display: flex;
 align-items: center;
 gap: 10px;
 margin-bottom: 12px;
-animation: labelSlide 1s;
-}
-@keyframes labelSlide {
-from { opacity: 0; transform: translateX(-20px); }
-to { opacity: 1; transform: translateX(0); }
 }
 .ip-address {
 font-size: 2.6rem;
@@ -328,20 +245,14 @@ text-align: center;
 color: #ffffff;
 border: 2px solid #60e060;
 margin: 18px 0 24px;
-box-shadow: inset 0 4px 12px #00000080, 0 0 30px #60e060;
+box-shadow: inset 0 4px 12px #00000080, 0 0 20px #60e060;
 word-break: break-word;
-transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s;
-animation: ipPulse 3s infinite;
+transition: border-color 0.3s ease, box-shadow 0.3s ease;
 line-height: 1.2;
-}
-@keyframes ipPulse {
-0%, 100% { text-shadow: 0 0 10px #60e060; }
-50% { text-shadow: 0 0 30px #60e060; }
 }
 .ip-address:hover {
 border-color: #c0ffc0;
-box-shadow: inset 0 4px 12px #00000080, 0 0 50px #60e060;
-transform: scale(1.02);
+box-shadow: inset 0 4px 12px #00000080, 0 0 30px #60e060;
 }
 .copy-btn {
 background: linear-gradient(145deg, #2f8f2f, #1f6f1f);
@@ -360,50 +271,13 @@ cursor: pointer;
 border-bottom: 6px solid #0f3f0f;
 transition: all 0.1s ease;
 border: 2px solid #80ff80;
-animation: pulseButton 2s infinite, shimmer 3s infinite, jiggle 5s infinite;
-position: relative;
-overflow: hidden;
-box-shadow: 0 0 30px #80ff80;
-}
-@keyframes jiggle {
-0%, 100% { transform: rotate(0deg); }
-2% { transform: rotate(2deg); }
-4% { transform: rotate(-2deg); }
-6% { transform: rotate(1deg); }
-8% { transform: rotate(0deg); }
+box-shadow: 0 0 20px #80ff80;
 }
 .copy-btn i {
-transition: transform 0.3s ease;
+transition: transform 0.2s ease;
 }
 .copy-btn:hover i {
 transform: rotate(360deg) scale(1.2);
-}
-@keyframes shimmer {
-0% { background-position: 0% 50%; }
-100% { background-position: 200% 50%; }
-}
-.copy-btn::before {
-content: '';
-position: absolute;
-top: 50%;
-left: 50%;
-width: 300%;
-height: 300%;
-background: radial-gradient(circle at center, rgba(255,255,255,0.4) 0%, transparent 70%);
-transform: translate(-50%, -50%) scale(0);
-border-radius: 50%;
-transition: transform 0.5s;
-pointer-events: none;
-}
-.copy-btn:active::before {
-transform: translate(-50%, -50%) scale(1);
-opacity: 0;
-transition: transform 0.3s;
-}
-@keyframes pulseButton {
-0% { box-shadow: 0 0 0 0 rgba(128, 255, 128, 0.7); }
-70% { box-shadow: 0 0 0 20px rgba(128, 255, 128, 0); }
-100% { box-shadow: 0 0 0 0 rgba(128, 255, 128, 0); }
 }
 .copy-btn:active {
 transform: translateY(4px) scale(0.98);
@@ -414,11 +288,7 @@ font-size: 1.2rem;
 margin-bottom: 28px;
 font-weight: 400;
 color: #f0fff0;
-transition: transform 0.3s;
 word-break: break-word;
-}
-.card:hover .description-text {
-transform: translateX(6px);
 }
 .tag-group {
 display: flex;
@@ -435,24 +305,17 @@ display: flex;
 align-items: center;
 gap: 12px;
 border: 2px solid #60e060;
-box-shadow: 0 6px 0 #0f3f0f, 0 0 20px #60e060;
+box-shadow: 0 6px 0 #0f3f0f, 0 0 15px #60e060;
 transition: all 0.2s ease;
 word-break: break-word;
-animation: tagAppear 0.5s ease-out;
-}
-.tag:nth-child(1) { animation-delay: 0.2s; }
-.tag:nth-child(2) { animation-delay: 0.3s; }
-@keyframes tagAppear {
-from { opacity: 0; transform: scale(0.8) translateY(10px); }
-to { opacity: 1; transform: scale(1) translateY(0); }
 }
 .tag:hover {
-transform: translateY(-5px) scale(1.05);
-box-shadow: 0 11px 0 #0f3f0f, 0 0 30px #60e060;
+transform: translateY(-4px) scale(1.03);
+box-shadow: 0 10px 0 #0f3f0f, 0 0 20px #60e060;
 background: #2f7f2f;
 }
 .tag:hover i {
-transform: rotate(360deg) scale(1.3);
+transform: scale(1.2);
 }
 /* Команда */
 .team-grid {
@@ -467,20 +330,12 @@ border-radius: 40px;
 padding: 24px 16px;
 text-align: center;
 border: 2px solid #60e060;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060;
 transition: all 0.3s ease;
-animation: teamPop 0.5s ease-out forwards;
-opacity: 0;
-}
-.team-member:nth-child(1) { animation-delay: 0.1s; }
-.team-member:nth-child(2) { animation-delay: 0.2s; }
-@keyframes teamPop {
-from { opacity: 0; transform: translateY(15px) scale(0.95); }
-to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .team-member:hover {
-transform: translateY(-8px) scale(1.02);
-box-shadow: 0 15px 0 #0f3f0f, 0 0 30px #60e060, 0 0 0 2px #a0ff80;
+transform: translateY(-5px) scale(1.01);
+box-shadow: 0 12px 0 #0f3f0f, 0 0 20px #60e060, 0 0 0 1px #a0ff80;
 background: #2f7f2f;
 border-color: #a0ff80;
 }
@@ -496,20 +351,9 @@ justify-content: center;
 font-size: 2.5rem;
 border: 2px solid #60e060;
 transition: transform 0.3s;
-animation: avatarFloat 4s infinite;
-}
-@keyframes avatarFloat {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-5px); }
-}
-.team-member:nth-child(1) .team-avatar {
-color: #ffd966;
-}
-.team-member:nth-child(2) .team-avatar {
-color: #80ff80;
 }
 .team-member:hover .team-avatar {
-transform: scale(1.1) rotate(8deg);
+transform: scale(1.05) rotate(5deg);
 border-color: #a0ff80;
 }
 .team-name {
@@ -519,11 +363,10 @@ color: white;
 margin-bottom: 5px;
 word-break: break-word;
 cursor: pointer;
-transition: all 0.2s;
 }
 .team-name:hover {
 color: #a0ff80;
-text-shadow: 0 0 10px #60e060;
+text-shadow: 0 0 5px #60e060;
 }
 .team-role {
 font-size: 0.95rem;
@@ -556,49 +399,29 @@ text-decoration: none;
 }
 .team-social a:hover {
 background: #2f7f2f;
-transform: translateY(-3px) scale(1.1);
+transform: translateY(-3px);
 color: white;
-box-shadow: 0 0 20px #a0ff80;
+box-shadow: 0 0 15px #a0ff80;
 }
-.team-social a:hover i {
-animation: shake 0.3s ease;
-}
-@keyframes shake {
-0% { transform: rotate(0deg); }
-25% { transform: rotate(10deg); }
-50% { transform: rotate(-10deg); }
-75% { transform: rotate(5deg); }
-100% { transform: rotate(0deg); }
-}
-/* Telegram канал с эмодзи */
+/* Telegram канал */
 .telegram-channel {
 background: linear-gradient(135deg, #1f5f1f, #2f7f2f);
 border-radius: 40px;
 padding: 30px 24px;
 text-align: center;
 border: 2px solid #60e060;
-box-shadow: 0 12px 0 #0f3f0f, 0 0 30px #60e060;
+box-shadow: 0 12px 0 #0f3f0f, 0 0 20px #60e060;
 transition: all 0.3s ease;
-animation: channelPop 0.6s ease-out forwards;
-}
-@keyframes channelPop {
-from { opacity: 0; transform: translateY(15px) scale(0.95); }
-to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .telegram-channel:hover {
-transform: translateY(-8px);
-box-shadow: 0 20px 0 #0f3f0f, 0 0 50px #60e060;
+transform: translateY(-5px);
+box-shadow: 0 18px 0 #0f3f0f, 0 0 30px #60e060;
 border-color: #a0ff80;
 }
 .telegram-icon {
 font-size: 4rem;
 color: #60e060;
 margin-bottom: 15px;
-animation: telegramFloat 3s infinite;
-}
-@keyframes telegramFloat {
-0%, 100% { transform: translateY(0); }
-50% { transform: translateY(-8px); }
 }
 .telegram-text {
 font-size: 1.3rem;
@@ -617,24 +440,18 @@ display: inline-flex;
 align-items: center;
 gap: 12px;
 cursor: pointer;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 30px #80ff80;
-transition: all 0.2s ease;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #80ff80;
+transition: all 0.1s ease;
 color: white;
 text-decoration: none;
-animation: linkPulse 2s infinite;
-}
-@keyframes linkPulse {
-0% { box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #80ff80; }
-50% { box-shadow: 0 8px 0 #0f3f0f, 0 0 40px #80ff80; }
-100% { box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #80ff80; }
 }
 .telegram-link:hover {
-transform: translateY(-5px) scale(1.05);
-box-shadow: 0 13px 0 #0f3f0f, 0 0 60px #80ff80;
+transform: translateY(-3px);
+box-shadow: 0 12px 0 #0f3f0f, 0 0 30px #80ff80;
 }
 .telegram-link:active {
-transform: translateY(3px) scale(0.98);
-box-shadow: 0 3px 0 #0f3f0f;
+transform: translateY(3px);
+box-shadow: 0 4px 0 #0f3f0f;
 }
 /* Преимущества */
 .features-grid {
@@ -649,22 +466,12 @@ border-radius: 40px;
 padding: 24px 16px;
 text-align: center;
 border: 2px solid #60e060;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060;
 transition: all 0.3s ease;
-animation: featurePop 0.5s ease-out forwards;
-opacity: 0;
-}
-.feature-item:nth-child(1) { animation-delay: 0.1s; }
-.feature-item:nth-child(2) { animation-delay: 0.15s; }
-.feature-item:nth-child(3) { animation-delay: 0.2s; }
-.feature-item:nth-child(4) { animation-delay: 0.25s; }
-@keyframes featurePop {
-from { opacity: 0; transform: translateY(15px) scale(0.95); }
-to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .feature-item:hover {
-transform: translateY(-8px) scale(1.02);
-box-shadow: 0 15px 0 #0f3f0f, 0 0 30px #60e060;
+transform: translateY(-5px);
+box-shadow: 0 12px 0 #0f3f0f, 0 0 20px #60e060;
 background: #2f7f2f;
 border-color: #a0ff80;
 }
@@ -675,7 +482,7 @@ margin-bottom: 10px;
 transition: transform 0.3s;
 }
 .feature-item:hover i {
-transform: scale(1.2) rotate(5deg);
+transform: scale(1.1) rotate(5deg);
 }
 .feature-item span {
 font-weight: 600;
@@ -696,13 +503,13 @@ border-radius: 40px;
 padding: 30px 24px;
 text-align: center;
 border: 2px solid #60e060;
-box-shadow: 0 12px 0 #0f3f0f, 0 0 30px #60e060;
+box-shadow: 0 12px 0 #0f3f0f, 0 0 20px #60e060;
 transition: all 0.3s ease;
 width: 100%;
 }
 .fact-card:hover {
-transform: translateY(-8px);
-box-shadow: 0 20px 0 #0f3f0f, 0 0 40px #60e060;
+transform: translateY(-5px);
+box-shadow: 0 18px 0 #0f3f0f, 0 0 30px #60e060;
 background: #2f7f2f;
 border-color: #a0ff80;
 }
@@ -710,12 +517,6 @@ border-color: #a0ff80;
 font-size: 3.5rem;
 color: #ffd966;
 margin-bottom: 15px;
-animation: factIconFloat 3s infinite;
-}
-@keyframes factIconFloat {
-0% { transform: translateY(0); }
-50% { transform: translateY(-5px); }
-100% { transform: translateY(0); }
 }
 .fact-text {
 font-size: 1.3rem;
@@ -723,12 +524,6 @@ font-weight: 600;
 color: white;
 margin-bottom: 20px;
 min-height: 80px;
-animation: factTextPulse 3s infinite;
-}
-@keyframes factTextPulse {
-0% { opacity: 0.9; }
-50% { opacity: 1; text-shadow: 0 0 5px #a0ff80; }
-100% { opacity: 0.9; }
 }
 .fact-nav {
 display: flex;
@@ -750,18 +545,12 @@ font-size: 1.5rem;
 cursor: pointer;
 transition: all 0.2s;
 box-shadow: 0 5px 0 #0f3f0f;
-animation: navBtnPulse 2s infinite;
-}
-@keyframes navBtnPulse {
-0% { box-shadow: 0 5px 0 #0f3f0f; }
-50% { box-shadow: 0 5px 0 #0f3f0f, 0 0 15px #60e060; }
-100% { box-shadow: 0 5px 0 #0f3f0f; }
 }
 .fact-nav-btn:hover {
 background: #2f7f2f;
 transform: translateY(-3px);
 border-color: #a0ff80;
-box-shadow: 0 0 20px #a0ff80;
+box-shadow: 0 0 15px #a0ff80;
 }
 .fact-dots {
 display: flex;
@@ -779,16 +568,10 @@ transition: all 0.3s;
 }
 .fact-dot.active {
 background: #ffd966;
-transform: scale(1.3);
-box-shadow: 0 0 10px #ffd966;
-animation: dotPulse 1s infinite;
+transform: scale(1.2);
+box-shadow: 0 0 8px #ffd966;
 }
-@keyframes dotPulse {
-0% { box-shadow: 0 0 0 0 #ffd966; }
-70% { box-shadow: 0 0 10px 5px #ffd966; }
-100% { box-shadow: 0 0 0 0 #ffd966; }
-}
-/* Ивент + таймер (до 31.12.2026) */
+/* Ивент + таймер */
 .events-grid {
 display: grid;
 grid-template-columns: 1fr;
@@ -801,18 +584,12 @@ border-radius: 40px;
 padding: 24px 16px;
 text-align: center;
 border: 2px solid #60e060;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060;
 transition: all 0.3s ease;
-animation: eventPop 0.6s ease-out forwards;
-opacity: 0;
-}
-@keyframes eventPop {
-from { opacity: 0; transform: translateY(15px) scale(0.95); }
-to { opacity: 1; transform: translateY(0) scale(1); }
 }
 .event-card:hover {
-transform: translateY(-8px);
-box-shadow: 0 15px 0 #0f3f0f, 0 0 30px #60e060;
+transform: translateY(-5px);
+box-shadow: 0 12px 0 #0f3f0f, 0 0 25px #60e060;
 background: #2f7f2f;
 border-color: #a0ff80;
 }
@@ -826,12 +603,6 @@ border-radius: 30px;
 display: inline-block;
 margin-bottom: 15px;
 box-shadow: 0 4px 0 #b38f40;
-animation: datePulse 2s infinite;
-}
-@keyframes datePulse {
-0% { transform: scale(1); }
-50% { transform: scale(1.05); box-shadow: 0 4px 0 #b38f40, 0 0 15px #ffd966; }
-100% { transform: scale(1); }
 }
 .event-title {
 font-size: 1.5rem;
@@ -859,62 +630,50 @@ min-width: 65px;
 border: 1px solid #60e060;
 box-shadow: 0 4px 0 #0f3f0f;
 transition: transform 0.2s;
-animation: countdownItemPulse 2s infinite;
-}
-@keyframes countdownItemPulse {
-0% { transform: scale(1); }
-50% { transform: scale(1.02); box-shadow: 0 4px 0 #0f3f0f, 0 0 10px #60e060; }
-100% { transform: scale(1); }
 }
 .countdown-item:hover {
-transform: scale(1.05);
+transform: scale(1.02);
 border-color: #a0ff80;
-box-shadow: 0 0 15px #a0ff80;
+box-shadow: 0 0 10px #a0ff80;
 }
 .countdown-value {
 font-size: 2rem;
 font-weight: 800;
 color: #ffd966;
-animation: countdownPulse 1s infinite;
-}
-@keyframes countdownPulse {
-0% { transform: scale(1); }
-50% { transform: scale(1.05); text-shadow: 0 0 10px #ffd966; }
-100% { transform: scale(1); }
 }
 .countdown-label {
 font-size: 0.8rem;
 color: #b0ffb0;
 text-transform: uppercase;
 }
+/* Кнопка правил (новая) */
 .rules-btn {
 background: #2f7f2f;
 border: 2px solid #80ff80;
-padding: 22px;
-font-size: 1.4rem;
-margin-bottom: 30px;
+padding: 18px 24px;
+font-size: 1.3rem;
 border-radius: 60px;
 display: flex;
 align-items: center;
 justify-content: center;
 gap: 12px;
 cursor: pointer;
-box-shadow: 0 9px 0 #0f3f0f, 0 0 30px #80ff80;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #80ff80;
 transition: all 0.1s ease;
 color: white;
 font-weight: 600;
 width: 100%;
-animation: rulesPulse 2s infinite;
-}
-@keyframes rulesPulse {
-0% { box-shadow: 0 9px 0 #0f3f0f, 0 0 30px #80ff80; }
-50% { box-shadow: 0 9px 0 #0f3f0f, 0 0 50px #80ff80; }
-100% { box-shadow: 0 9px 0 #0f3f0f, 0 0 30px #80ff80; }
+margin: 30px 0 20px;
 }
 .rules-btn:active {
-transform: translateY(5px) scale(0.97);
-box-shadow: 0 2px 0 #0f3f0f;
+transform: translateY(4px);
+box-shadow: 0 4px 0 #0f3f0f;
 }
+.rules-btn:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 0 #0f3f0f, 0 0 30px #80ff80;
+}
+/* Соцсети */
 .social-grid {
 display: grid;
 grid-template-columns: repeat(2, 1fr);
@@ -931,38 +690,25 @@ text-decoration: none;
 font-weight: 600;
 font-size: 1.1rem;
 border: 2px solid #60e060;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060;
 display: flex;
 align-items: center;
 justify-content: center;
 gap: 12px;
 transition: all 0.1s ease;
 cursor: pointer;
-animation: socialPop 0.5s ease-out forwards;
-opacity: 0;
-}
-.social-btn:nth-child(1) { animation-delay: 0.1s; }
-.social-btn:nth-child(2) { animation-delay: 0.15s; }
-.social-btn:nth-child(3) { animation-delay: 0.2s; }
-.social-btn:nth-child(4) { animation-delay: 0.25s; }
-@keyframes socialPop {
-from { opacity: 0; transform: scale(0.8); }
-to { opacity: 1; transform: scale(1); }
-}
-.social-btn i {
-transition: transform 0.3s;
 }
 .social-btn:active {
-transform: translateY(5px) scale(0.97);
-box-shadow: 0 2px 0 #0f3f0f;
+transform: translateY(5px);
+box-shadow: 0 3px 0 #0f3f0f;
 }
 .social-btn:hover {
 background: #2f7f2f;
-transform: translateY(-4px) scale(1.05);
-box-shadow: 0 12px 0 #0f3f0f, 0 0 30px #60e060;
+transform: translateY(-3px);
+box-shadow: 0 10px 0 #0f3f0f, 0 0 20px #60e060;
 }
 .social-btn:hover i {
-transform: rotate(360deg) scale(1.3);
+transform: scale(1.2);
 }
 .donate-note {
 text-align: center;
@@ -970,12 +716,6 @@ font-size: 0.95rem;
 margin-top: 12px;
 color: #e0ffe0;
 font-style: italic;
-animation: donatePulse 3s infinite;
-}
-@keyframes donatePulse {
-0% { opacity: 0.8; }
-50% { opacity: 1; text-shadow: 0 0 5px #a0ff80; }
-100% { opacity: 0.8; }
 }
 /* FAQ */
 .faq-list {
@@ -988,21 +728,12 @@ margin-top: 20px;
 background: #1f5f1f;
 border-radius: 32px;
 border: 2px solid #60e060;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 15px #60e060;
 overflow: hidden;
 transition: all 0.3s ease;
-animation: faqAppear 0.5s ease-out forwards;
-opacity: 0;
-}
-.faq-item:nth-child(1) { animation-delay: 0.1s; }
-.faq-item:nth-child(2) { animation-delay: 0.15s; }
-.faq-item:nth-child(3) { animation-delay: 0.2s; }
-@keyframes faqAppear {
-from { opacity: 0; transform: translateX(-10px); }
-to { opacity: 1; transform: translateX(0); }
 }
 .faq-item:hover {
-box-shadow: 0 12px 0 #0f3f0f, 0 0 30px #60e060;
+box-shadow: 0 12px 0 #0f3f0f, 0 0 20px #60e060;
 border-color: #a0ff80;
 }
 .faq-question {
@@ -1052,18 +783,12 @@ border-radius: 60px;
 font-weight: 600;
 font-size: 1.1rem;
 border: 2px solid #60e060;
-box-shadow: 0 8px 0 #0f3f0f, 0 0 30px #60e060;
+box-shadow: 0 8px 0 #0f3f0f, 0 0 20px #60e060;
 transition: all 0.3s;
-animation: versionPulse 3s infinite;
-}
-@keyframes versionPulse {
-0% { box-shadow: 0 8px 0 #0f3f0f, 0 0 30px #60e060; }
-50% { box-shadow: 0 8px 0 #0f3f0f, 0 0 50px #60e060; }
-100% { box-shadow: 0 8px 0 #0f3f0f, 0 0 30px #60e060; }
 }
 .version-badge span:hover {
-transform: scale(1.05) translateY(-3px);
-box-shadow: 0 11px 0 #0f3f0f, 0 0 50px #60e060;
+transform: scale(1.02) translateY(-2px);
+box-shadow: 0 10px 0 #0f3f0f, 0 0 30px #60e060;
 }
 .footer {
 text-align: center;
@@ -1087,16 +812,10 @@ margin-top: 8px;
 color: #a0ff80;
 cursor: pointer;
 transition: opacity 0.3s;
-animation: easterEggGlow 3s infinite;
-}
-@keyframes easterEggGlow {
-0% { text-shadow: 0 0 2px #a0ff80; }
-50% { text-shadow: 0 0 10px #a0ff80; }
-100% { text-shadow: 0 0 2px #a0ff80; }
 }
 .footer .easter-egg:hover {
 opacity: 1;
-text-shadow: 0 0 15px #a0ff80;
+text-shadow: 0 0 10px #a0ff80;
 }
 .footer .hidden-easter {
 font-size: 0.7rem;
@@ -1109,12 +828,6 @@ letter-spacing: 2px;
 }
 .footer.clicked .hidden-easter {
 opacity: 1;
-animation: iwehPulse 1s infinite;
-}
-@keyframes iwehPulse {
-0% { text-shadow: 0 0 2px #ffd966; }
-50% { text-shadow: 0 0 10px #ffd966; }
-100% { text-shadow: 0 0 2px #ffd966; }
 }
 .toast {
 position: fixed;
@@ -1126,7 +839,7 @@ color: white;
 padding: 16px 32px;
 border-radius: 60px;
 font-weight: 600;
-box-shadow: 0 20px 40px #000, 0 0 30px #80ff80;
+box-shadow: 0 20px 40px #000, 0 0 20px #80ff80;
 border: 2px solid #80ff80;
 backdrop-filter: blur(10px);
 z-index: 2000;
@@ -1135,17 +848,11 @@ align-items: center;
 gap: 15px;
 font-size: 1.1rem;
 opacity: 0;
-transition: opacity 0.2s ease, transform 0.2s ease;
+transition: opacity 0.2s ease;
 }
 .toast.show {
 display: flex;
 opacity: 1;
-animation: toastPop 0.3s;
-}
-@keyframes toastPop {
-0% { transform: translate(-50%, 20px) scale(0.8); opacity: 0; }
-80% { transform: translate(-50%, -2px) scale(1.02); }
-100% { transform: translate(-50%, 0) scale(1); opacity: 1; }
 }
 .modal {
 display: none;
@@ -1174,11 +881,11 @@ padding: 36px 28px;
 max-width: 520px;
 width: 100%;
 border: 3px solid #60e060;
-box-shadow: 0 40px 60px #000, 0 0 50px #60e060;
+box-shadow: 0 40px 60px #000, 0 0 40px #60e060;
 max-height: 80vh;
 overflow-y: auto;
 transform: scale(0.8) translateY(30px);
-transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .modal.show .modal-content {
 transform: scale(1) translateY(0);
@@ -1192,12 +899,12 @@ padding-bottom: 16px;
 margin-bottom: 24px;
 }
 .modal-header h3 {
-font-size: 2.2rem;
+font-size: 2rem;
 font-weight: 700;
 color: #ffffff;
 word-break: break-word;
 }
-.back-btn, .close-modal {
+.close-modal {
 background: #2f8f2f;
 border: 2px solid #80ff80;
 color: white;
@@ -1213,24 +920,22 @@ width: fit-content;
 padding: 14px 30px;
 border-radius: 60px;
 transition: all 0.1s ease;
-box-shadow: 0 0 20px #80ff80;
+box-shadow: 0 0 15px #80ff80;
 }
-.back-btn:active, .close-modal:active {
+.close-modal:active {
 transform: translateY(3px);
 border-bottom-width: 2px;
 }
-.modal-article-date {
-display: inline-block;
-background: #1f4f1f;
-padding: 6px 20px;
-border-radius: 40px;
-font-weight: 600;
-font-size: 0.9rem;
-border: 2px solid #60e060;
-margin-bottom: 20px;
-}
-/* Мобильная оптимизация */
+/* Мобильная оптимизация: полное отключение анимаций на ≤600px */
 @media (max-width: 600px) {
+/* Отключаем все анимации и лишние эффекты */
+* {
+animation: none !important;
+transition: none !important;
+}
+.flowers-container .flower {
+opacity: 0.2; /* просто делаем их слабозаметными, но без движения */
+}
 .card, .ip-block, .hero .tagline {
 backdrop-filter: none;
 background: rgba(20, 50, 20, 0.95);
@@ -1238,21 +943,13 @@ background: rgba(20, 50, 20, 0.95);
 .hero .tagline {
 background: rgba(20, 60, 20, 0.95);
 }
-.hero h1, .hero .tagline, .ip-block, .copy-btn, .fact-card, .event-card,
-.countdown-item, .rules-btn, .social-btn, .version-badge span {
-animation: none;
-}
 .copy-btn {
-box-shadow: 0 0 15px #80ff80;
+box-shadow: 0 0 10px #80ff80;
 border-bottom: 4px solid #0f3f0f;
 }
-.ip-address {
-animation: none;
-}
-.card:hover .section-header i,
-.social-btn:hover i,
-.tag:hover i {
-transform: none;
+.card:hover, .ip-block:hover, .copy-btn:hover, .social-btn:hover, .tag:hover {
+transform: none !important;
+box-shadow: none !important;
 }
 .hero h1 { font-size: 3.5rem; }
 .hero .tagline { font-size: 1rem; padding: 8px 20px; }
@@ -1326,70 +1023,25 @@ transform: none;
 .countdown-value { font-size: 1rem; }
 .countdown-item { min-width: 38px; padding: 3px 4px; }
 }
-/* Дополнительные улучшения для сверхмалых экранов (320px и меньше) */
-@media (max-width: 340px) {
-.container { padding: 0 4px; }
-.card { padding: 20px 12px; }
-.section-header { gap: 8px; }
-.section-header i { font-size: 1.8rem; }
-.section-header h2 { font-size: 1.1rem; padding-left: 8px; }
-.description-text { font-size: 0.9rem; }
-.tag { font-size: 0.7rem; padding: 6px 10px; gap: 6px; }
-.tag i { font-size: 1rem; }
-.team-grid { gap: 10px; }
-.team-member { padding: 16px 8px; }
-.team-avatar { width: 45px; height: 45px; font-size: 1.5rem; }
-.team-name { font-size: 0.8rem; }
-.team-role { font-size: 0.65rem; }
-.team-social a { width: 32px; height: 32px; font-size: 1rem; }
-.feature-item { padding: 16px 8px; }
-.feature-item i { font-size: 1.5rem; }
-.feature-item span { font-size: 0.7rem; }
-.fact-card { padding: 20px 12px; }
-.fact-icon { font-size: 2.5rem; }
-.fact-text { font-size: 0.9rem; min-height: 60px; }
-.fact-nav-btn { width: 36px; height: 36px; font-size: 1rem; }
-.event-card { padding: 16px 8px; }
-.event-date { font-size: 0.9rem; padding: 4px 10px; }
-.event-title { font-size: 1rem; }
-.event-desc { font-size: 0.8rem; }
-.countdown { gap: 6px; }
-.countdown-item { min-width: 30px; padding: 3px; }
-.countdown-value { font-size: 0.9rem; }
-.countdown-label { font-size: 0.55rem; }
-.rules-btn { font-size: 1rem; padding: 16px; gap: 6px; }
-.social-grid { gap: 8px; }
-.social-btn { font-size: 0.65rem; padding: 8px 4px; gap: 4px; }
-.social-btn i { font-size: 0.9rem; }
-.donate-note { font-size: 0.75rem; }
-.faq-question { font-size: 0.8rem; padding: 12px 14px; }
-.faq-answer { font-size: 0.75rem; }
-.version-badge span { font-size: 0.7rem; padding: 6px 12px; }
-.footer { font-size: 0.6rem; }
-.footer .easter-egg { font-size: 0.7rem; }
-}
-
 @media (max-width: 320px) {
 .hero h1 { font-size: 1.6rem; }
 .hero .tagline { font-size: 0.65rem; padding: 4px 6px; }
 .ip-address { font-size: 0.9rem; padding: 10px; }
-.copy-btn { font-size: 0.65rem; padding: 8px; gap: 4px; }
-.copy-btn i { font-size: 0.9rem; }
+.copy-btn { font-size: 0.65rem; padding: 6px; gap: 4px; }
 .section-header h2 { font-size: 1rem; }
-.section-header i { font-size: 1.6rem; }
-.description-text { font-size: 0.85rem; }
-.tag { font-size: 0.65rem; padding: 5px 8px; }
-.team-name { font-size: 0.75rem; }
-.feature-item span { font-size: 0.65rem; }
-.fact-text { font-size: 0.85rem; }
-.event-title { font-size: 0.95rem; }
-.countdown-item { min-width: 28px; padding: 2px; }
-.countdown-value { font-size: 0.8rem; }
+.section-header i { font-size: 1.4rem; }
+.description-text { font-size: 0.8rem; }
+.tag { font-size: 0.6rem; padding: 4px 8px; }
+.team-name { font-size: 0.7rem; }
+.feature-item span { font-size: 0.6rem; }
+.fact-text { font-size: 0.8rem; }
+.event-title { font-size: 0.9rem; }
+.countdown-item { min-width: 32px; padding: 2px; }
+.countdown-value { font-size: 0.9rem; }
 .countdown-label { font-size: 0.5rem; }
 .social-btn { font-size: 0.6rem; padding: 6px 2px; }
-.faq-question { font-size: 0.75rem; }
+.faq-question { font-size: 0.7rem; }
 }
-
 @media (prefers-reduced-motion: reduce) {
 * { animation-duration: 0.01s !important; transition-duration: 0.01s !important; }
 }
@@ -1424,21 +1076,8 @@ transform: none;
 <span class="tag"><i class="fas fa-skull"></i> Анархия</span>
 <span class="tag"><i class="fas fa-door-open"></i> Без привата</span>
 </div>
-</div>
-
-<!-- Правила сервера (отдельный блок) -->
-<div class="card">
-<div class="section-header">
-<i class="fas fa-scroll"></i>
-<h2>📜 Правила сервера</h2>
-</div>
-<ul style="list-style: none; margin-bottom: 0; padding-left: 0;">
-<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-skull" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Анархия:</strong> разрешено гриферство, воровство, убийства.</li>
-<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-ban" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Запрещены:</strong> читы, дюпы, использование багов (бан без предупреждения).</li>
-<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-comment-slash" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Уважение:</strong> никаких оскорблений реальных людей и угроз.</li>
-<li style="margin-bottom: 20px; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-dragon" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Администрация:</strong> вмешивается только при нарушении п.2-3.</li>
-<li style="margin-bottom: 0; display: flex; align-items: flex-start; gap: 16px;"><i class="fas fa-leaf" style="color: #ffd966; font-size: 1.5rem; min-width: 32px;"></i> <strong>Главное:</strong> получай удовольствие!</li>
-</ul>
+<!-- Кнопка правил под блоком О сервере -->
+<button class="rules-btn" id="rulesBtn"><i class="fas fa-scroll"></i> ПРАВИЛА СЕРВЕРА</button>
 </div>
 
 <!-- НОВОСТИ с эмодзи -->
@@ -1565,9 +1204,6 @@ transform: none;
 </div>
 </div>
 
-<!-- Кнопка подробных правил (модалка) -->
-<button class="rules-btn" id="rulesBtn"><i class="fas fa-scroll"></i> ПРАВИЛА СЕРВЕРА (ПОДРОБНО)</button>
-
 <!-- Соцсети -->
 <div class="card">
 <div class="section-header">
@@ -1660,7 +1296,7 @@ transform: none;
 function createFlowers() {
 const container = document.getElementById('flowers-container');
 const symbols = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🍀', '🌿'];
-for (let i = 0; i < 40; i++) {
+for (let i = 0; i < 15; i++) { // Уменьшено до 15
 const flower = document.createElement('div');
 flower.classList.add('flower');
 flower.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
