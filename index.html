@@ -1015,6 +1015,7 @@ font-weight: 600;
 font-size: 1.2rem;
 color: #ffffff;
 transition: background 0.3s;
+word-break: break-word;
 }
 .faq-question i {
 font-size: 1.3rem;
@@ -1032,6 +1033,7 @@ transition: max-height 0.4s ease, padding 0.3s;
 color: #d0ffd0;
 font-size: 1rem;
 border-top: 0 solid rgba(127, 255, 150, 0.3);
+word-break: break-word;
 }
 .faq-item.active .faq-answer {
 max-height: 200px;
@@ -1324,6 +1326,70 @@ transform: none;
 .countdown-value { font-size: 1rem; }
 .countdown-item { min-width: 38px; padding: 3px 4px; }
 }
+/* Дополнительные улучшения для сверхмалых экранов (320px и меньше) */
+@media (max-width: 340px) {
+.container { padding: 0 4px; }
+.card { padding: 20px 12px; }
+.section-header { gap: 8px; }
+.section-header i { font-size: 1.8rem; }
+.section-header h2 { font-size: 1.1rem; padding-left: 8px; }
+.description-text { font-size: 0.9rem; }
+.tag { font-size: 0.7rem; padding: 6px 10px; gap: 6px; }
+.tag i { font-size: 1rem; }
+.team-grid { gap: 10px; }
+.team-member { padding: 16px 8px; }
+.team-avatar { width: 45px; height: 45px; font-size: 1.5rem; }
+.team-name { font-size: 0.8rem; }
+.team-role { font-size: 0.65rem; }
+.team-social a { width: 32px; height: 32px; font-size: 1rem; }
+.feature-item { padding: 16px 8px; }
+.feature-item i { font-size: 1.5rem; }
+.feature-item span { font-size: 0.7rem; }
+.fact-card { padding: 20px 12px; }
+.fact-icon { font-size: 2.5rem; }
+.fact-text { font-size: 0.9rem; min-height: 60px; }
+.fact-nav-btn { width: 36px; height: 36px; font-size: 1rem; }
+.event-card { padding: 16px 8px; }
+.event-date { font-size: 0.9rem; padding: 4px 10px; }
+.event-title { font-size: 1rem; }
+.event-desc { font-size: 0.8rem; }
+.countdown { gap: 6px; }
+.countdown-item { min-width: 30px; padding: 3px; }
+.countdown-value { font-size: 0.9rem; }
+.countdown-label { font-size: 0.55rem; }
+.rules-btn { font-size: 1rem; padding: 16px; gap: 6px; }
+.social-grid { gap: 8px; }
+.social-btn { font-size: 0.65rem; padding: 8px 4px; gap: 4px; }
+.social-btn i { font-size: 0.9rem; }
+.donate-note { font-size: 0.75rem; }
+.faq-question { font-size: 0.8rem; padding: 12px 14px; }
+.faq-answer { font-size: 0.75rem; }
+.version-badge span { font-size: 0.7rem; padding: 6px 12px; }
+.footer { font-size: 0.6rem; }
+.footer .easter-egg { font-size: 0.7rem; }
+}
+
+@media (max-width: 320px) {
+.hero h1 { font-size: 1.6rem; }
+.hero .tagline { font-size: 0.65rem; padding: 4px 6px; }
+.ip-address { font-size: 0.9rem; padding: 10px; }
+.copy-btn { font-size: 0.65rem; padding: 8px; gap: 4px; }
+.copy-btn i { font-size: 0.9rem; }
+.section-header h2 { font-size: 1rem; }
+.section-header i { font-size: 1.6rem; }
+.description-text { font-size: 0.85rem; }
+.tag { font-size: 0.65rem; padding: 5px 8px; }
+.team-name { font-size: 0.75rem; }
+.feature-item span { font-size: 0.65rem; }
+.fact-text { font-size: 0.85rem; }
+.event-title { font-size: 0.95rem; }
+.countdown-item { min-width: 28px; padding: 2px; }
+.countdown-value { font-size: 0.8rem; }
+.countdown-label { font-size: 0.5rem; }
+.social-btn { font-size: 0.6rem; padding: 6px 2px; }
+.faq-question { font-size: 0.75rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
 * { animation-duration: 0.01s !important; transition-duration: 0.01s !important; }
 }
