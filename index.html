@@ -926,46 +926,50 @@ box-shadow: 0 0 15px #80ff80;
 transform: translateY(3px);
 border-bottom-width: 2px;
 }
-/* Мобильная оптимизация: полное отключение анимаций на ≤600px */
+/* Мобильная оптимизация: анимации отключены, но сохранены тени и цвета */
 @media (max-width: 600px) {
-/* Отключаем все анимации и лишние эффекты */
+/* Отключаем все анимации и переходы для производительности */
 * {
 animation: none !important;
 transition: none !important;
 }
-.flowers-container .flower {
-opacity: 0.2; /* просто делаем их слабозаметными, но без движения */
-}
+/* Но оставляем визуальные эффекты: тени, свечения (они статичны) */
 .card, .ip-block, .hero .tagline {
 backdrop-filter: none;
-background: rgba(20, 50, 20, 0.95);
+background: rgba(20, 50, 20, 0.95); /* чуть более насыщенный фон */
+box-shadow: 0 10px 20px -10px #000, 0 0 0 1px rgba(100, 255, 150, 0.3), 0 0 15px #60e060;
 }
 .hero .tagline {
 background: rgba(20, 60, 20, 0.95);
+box-shadow: 0 5px 0 #0f3f0f, 0 0 15px #60e060;
 }
 .copy-btn {
-box-shadow: 0 0 10px #80ff80;
-border-bottom: 4px solid #0f3f0f;
+box-shadow: 0 5px 0 #0f3f0f, 0 0 15px #80ff80;
 }
+.ip-address {
+box-shadow: inset 0 4px 8px #00000080, 0 0 15px #60e060;
+}
+/* Убираем hover-эффекты, чтобы не было лишних перерисовок */
 .card:hover, .ip-block:hover, .copy-btn:hover, .social-btn:hover, .tag:hover {
 transform: none !important;
-box-shadow: none !important;
+box-shadow: inherit !important;
 }
-.hero h1 { font-size: 3.5rem; }
+/* Оставляем статичные цвета */
+.hero h1 { font-size: 3.5rem; text-shadow: 0 0 20px #a0ff80; }
 .hero .tagline { font-size: 1rem; padding: 8px 20px; }
 .ip-address { font-size: 1.8rem; }
 .copy-btn { font-size: 1.2rem; }
 .section-header h2 { font-size: 1.5rem; }
-.section-header i { font-size: 2rem; }
+.section-header i { font-size: 2rem; filter: drop-shadow(0 0 8px #a0ff80); }
 .description-text { font-size: 1rem; }
-.tag { font-size: 0.9rem; padding: 8px 18px; }
+.tag { font-size: 0.9rem; padding: 8px 18px; box-shadow: 0 4px 0 #0f3f0f, 0 0 10px #60e060; }
 .team-name { font-size: 1.1rem; }
 .team-role { font-size: 0.8rem; }
 .feature-item span { font-size: 0.9rem; }
 .fact-text { font-size: 1.1rem; }
 .event-title { font-size: 1.3rem; }
 .countdown-value { font-size: 1.6rem; }
-.countdown-item { min-width: 55px; padding: 6px 8px; }
+.countdown-item { min-width: 55px; padding: 6px 8px; box-shadow: 0 4px 0 #0f3f0f; }
 }
 @media (max-width: 520px) {
 .hero h1 { font-size: 3rem; }
