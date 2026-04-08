@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-    <title>Snowfune — 10 уровней анархии</title>
+    <title>Snowfune — 10 уровней снежной анархии</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { font-size: 16px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Montserrat', sans-serif;
-            background: #1a2f1a;
-            color: #e8ffe8;
+            background: #0a1a2e;
+            color: #e5f3ff;
             min-height: 100vh;
             padding: 24px 16px;
             display: flex;
@@ -24,87 +28,156 @@
             position: relative;
             overflow-x: hidden;
         }
+
         body::before {
             content: '';
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 20% 30%, #2d5a2d 0%, transparent 40%),
-                        radial-gradient(circle at 80% 70%, #1f4f1f 0%, transparent 40%),
-                        repeating-linear-gradient(45deg, rgba(150,255,150,0.03) 0px, rgba(150,255,150,0.03) 2px, transparent 2px, transparent 10px);
-            pointer-events: none; z-index: 0;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, #1f4f6a 0%, transparent 40%),
+                        radial-gradient(circle at 80% 70%, #144d63 0%, transparent 40%),
+                        repeating-linear-gradient(45deg, rgba(100, 200, 255, 0.03) 0px, rgba(100, 200, 255, 0.03) 2px, transparent 2px, transparent 10px);
+            pointer-events: none;
+            z-index: 0;
             animation: bgShift 30s infinite alternate;
         }
+
         @keyframes bgShift {
             0% { background-position: 0% 0%, 0% 0%, 0% 0%; }
             100% { background-position: 10% 10%, -5% 5%, 0% 0%; }
         }
-        .flowers-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 1;
+
+        .snowflakes-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
         }
-        .flower {
-            position: absolute; user-select: none; font-size: 1.8rem;
-            animation: fall linear infinite; opacity: 0;
-            will-change: transform; text-shadow: 0 0 15px #a0ff80, 0 0 30px #60e060;
+
+        .snowflake {
+            position: absolute;
+            user-select: none;
+            font-size: 1.8rem;
+            animation: fall linear infinite;
+            opacity: 0;
+            will-change: transform;
+            text-shadow: 0 0 15px #7fc4ff, 0 0 30px #4fa0e0;
         }
+
         @keyframes fall {
-            0% { transform: translateY(-10vh) rotate(0deg) scale(1); opacity: 0.7; }
-            100% { transform: translateY(110vh) rotate(720deg) scale(0.3); opacity: 0.1; }
+            0% {
+                transform: translateY(-10vh) rotate(0deg) scale(1);
+                opacity: 0.7;
+            }
+            100% {
+                transform: translateY(110vh) rotate(1080deg) scale(0.2);
+                opacity: 0.1;
+            }
         }
+
         .container {
-            max-width: 600px; width: 100%; position: relative; z-index: 2;
+            max-width: 600px;
+            width: 100%;
+            position: relative;
+            z-index: 2;
             animation: containerPop 1s cubic-bezier(0.2, 0.9, 0.3, 1.2);
         }
+
         @keyframes containerPop {
             0% { opacity: 0; transform: scale(0.9) translateY(30px); }
             70% { transform: scale(1.02) translateY(-5px); }
             100% { opacity: 1; transform: scale(1) translateY(0); }
         }
+
         .card {
-            background: rgba(20, 50, 20, 0.85);
+            background: rgba(15, 40, 55, 0.85);
             backdrop-filter: blur(10px);
             border-radius: 48px;
             padding: 32px 24px;
             margin-bottom: 30px;
-            border: 1px solid rgba(120, 255, 150, 0.4);
-            box-shadow: 0 30px 50px -20px #000, 0 0 0 1px rgba(100, 255, 150, 0.2), inset 0 1px 2px rgba(255,255,255,0.1);
-            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.5), box-shadow 0.4s ease, border-color 0.3s;
-            position: relative;
-            overflow: hidden;
+            border: 1px solid rgba(120, 200, 255, 0.4);
+            box-shadow: 0 30px 50px -20px #000, 0 0 0 1px rgba(100, 200, 255, 0.2), inset 0 1px 2px rgba(255,255,255,0.1);
+            transition: transform 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.5), box-shadow 0.4s ease;
         }
-        .card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 40px 70px -20px #000, 0 0 0 2px rgba(127, 255, 150, 0.9), 0 0 40px #60e060; border-color: #c0ffc0; }
+
+        .card:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 40px 70px -20px #000, 0 0 0 2px rgba(127, 196, 255, 0.9), 0 0 40px #3fa0e0;
+            border-color: #fff;
+        }
+
         .section-header {
-            display: flex; align-items: center; gap: 16px; margin-bottom: 28px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
         }
+
         .section-header i {
-            font-size: 2.5rem; background: linear-gradient(135deg, #b0ffb0, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 12px #a0ff80);
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #b0e8ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            filter: drop-shadow(0 0 12px #7fc4ff);
         }
+
         .section-header h2 {
-            font-size: 2rem; font-weight: 700; letter-spacing: -0.02em; background: linear-gradient(to right, #fff, #d0ffd0, #a0ffa0); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; border-left: 5px solid #a0ff80; padding-left: 16px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(to right, #fff, #d0f0ff, #a0d8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            border-left: 5px solid #7fc4ff;
+            padding-left: 16px;
         }
+
         .quest-progress {
-            font-size: 1.2rem; color: #ffd966; margin-bottom: 20px; text-align: center;
+            font-size: 1.2rem;
+            color: #ffd966;
+            margin-bottom: 20px;
+            text-align: center;
+            background: rgba(0,0,0,0.3);
+            padding: 10px;
+            border-radius: 60px;
         }
+
         .level-container {
             transition: opacity 0.5s ease, transform 0.5s ease;
         }
+
         .level-hidden {
             display: none;
         }
+
         .level-visible {
             display: block;
             animation: levelAppear 0.6s cubic-bezier(0.2, 0.9, 0.3, 1.2);
         }
+
         @keyframes levelAppear {
             0% { opacity: 0; transform: translateY(30px) scale(0.95); }
             100% { opacity: 1; transform: translateY(0) scale(1); }
         }
+
         .quest-question {
-            font-size: 1.6rem; font-weight: 700; margin-bottom: 25px; text-align: center;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            text-align: center;
+            line-height: 1.3;
         }
+
         .input-field {
-            background: #0f2f0f;
-            border: 2px solid #60e060;
+            background: #0b2635;
+            border: 2px solid #4ba3e6;
             border-radius: 60px;
             padding: 16px 24px;
             font-size: 1.2rem;
@@ -114,52 +187,82 @@
             outline: none;
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-        .input-field:focus { border-color: #a0ff80; box-shadow: 0 0 20px #60e060; }
+
+        .input-field:focus {
+            border-color: #7fc4ff;
+            box-shadow: 0 0 20px #4ba3e6;
+        }
+
         .btn {
-            background: linear-gradient(145deg, #2f8f2f, #1f6f1f);
-            border: 2px solid #80ff80;
+            background: linear-gradient(145deg, #2b7eb0, #1f6590);
+            border: 2px solid #7ac2ff;
             border-radius: 60px;
             padding: 16px 32px;
             font-weight: 700;
             font-size: 1.2rem;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 12px;
             cursor: pointer;
-            box-shadow: 0 8px 0 #0f3f0f, 0 0 30px #80ff80;
+            box-shadow: 0 8px 0 #0e3e5c, 0 0 30px #7ac2ff;
             transition: all 0.1s ease;
             color: white;
-            text-decoration: none;
-            border: none;
             width: 100%;
-            justify-content: center;
+            border: none;
         }
-        .btn:active { transform: translateY(4px); box-shadow: 0 3px 0 #0f3f0f; }
-        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 0 #0f3f0f, 0 0 40px #80ff80; }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 3px 0 #0e3e5c;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 #0e3e5c, 0 0 40px #7ac2ff;
+        }
+
         .btn:disabled {
             opacity: 0.5;
             pointer-events: none;
             transform: none;
-            box-shadow: 0 4px 0 #0f3f0f;
+            box-shadow: 0 4px 0 #0e3e5c;
         }
+
         .message {
-            margin-top: 20px; padding: 15px; border-radius: 40px; text-align: center; font-weight: 600;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 40px;
+            text-align: center;
+            font-weight: 600;
             display: none;
         }
-        .success { background: #1f7f1f; border: 2px solid #a0ff80; color: white; }
-        .error { background: #7f2f2f; border: 2px solid #ff8080; color: white; }
+
+        .success {
+            background: #1f6590;
+            border: 2px solid #7fc4ff;
+            color: white;
+        }
+
+        .error {
+            background: #7f2f2f;
+            border: 2px solid #ff8080;
+            color: white;
+        }
+
         .reward {
-            background: #1f5f1f;
+            background: #1a4f6a;
             border-radius: 40px;
             padding: 25px;
             text-align: center;
             border: 2px solid #ffd966;
             margin-top: 20px;
         }
+
         .reward-code {
             font-size: 2rem;
             font-weight: 800;
-            background: #0f2f0f;
+            background: #0b2635;
             padding: 15px 20px;
             border-radius: 60px;
             border: 2px solid #ffd966;
@@ -168,17 +271,29 @@
             cursor: pointer;
             transition: transform 0.2s;
         }
+
         .reward-code:hover {
             transform: scale(1.02);
             box-shadow: 0 0 20px #ffd966;
         }
+
         .footer {
-            text-align: center; color: #c0ffc0; padding: 16px 0 8px; border-top: 3px solid #2f7f2f; font-weight: 500;
+            text-align: center;
+            color: #c0e4ff;
+            padding: 16px 0 8px;
+            border-top: 3px solid #246a91;
+            font-weight: 500;
             margin-top: 30px;
         }
+
+        .footer a {
+            color: #a0d8ff;
+            text-decoration: none;
+        }
+
         .restart-btn {
-            background: #2f8f2f;
-            border: 2px solid #80ff80;
+            background: #1f6890;
+            border: 2px solid #7ac2ff;
             border-radius: 60px;
             padding: 12px 24px;
             font-size: 1rem;
@@ -190,111 +305,134 @@
             gap: 8px;
             margin-top: 20px;
             transition: 0.1s;
-            box-shadow: 0 4px 0 #0f3f0f;
+            box-shadow: 0 4px 0 #0e3e5c;
         }
-        .restart-btn:active { transform: translateY(2px); box-shadow: 0 2px 0 #0f3f0f; }
+
+        .restart-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #0e3e5c;
+        }
+
         @media (max-width: 600px) {
-            .card { backdrop-filter: none; background: rgba(20, 50, 20, 0.95); }
-            .section-header h2 { font-size: 1.5rem; }
+            .card {
+                backdrop-filter: none;
+                background: rgba(15, 40, 55, 0.95);
+                padding: 24px 18px;
+            }
+            .section-header h2 {
+                font-size: 1.5rem;
+            }
+            .quest-question {
+                font-size: 1.3rem;
+            }
+            .reward-code {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
 <body>
-<div class="flowers-container" id="flowers-container"></div>
+<div class="snowflakes-container" id="snowflakes-container"></div>
 <div class="container">
     <div class="card">
         <div class="section-header">
-            <i class="fas fa-skull"></i>
-            <h2>💀 10 уровней анархии</h2>
+            <i class="fas fa-snowflake"></i>
+            <h2>❄️ 10 уровней снежной анархии</h2>
         </div>
         <p style="font-size: 1.2rem; margin-bottom: 20px;">Ты вступил на тропу истинной анархии. Ответь на 10 вопросов, чтобы получить секретный промокод.</p>
         <div id="progress" class="quest-progress">Уровень 1/10</div>
 
-        <!-- Контейнеры уровней -->
+        <!-- Уровень 1 -->
         <div id="level1" class="level-container level-visible">
-            <div class="quest-question">🔢 Переведи двоичное число <span style="color: #ffd966;">1101</span> в десятичную систему.</div>
-            <input type="text" class="input-field" id="ans1" placeholder="Твой ответ">
+            <div class="quest-question">🔢 Переведи двоичное число <span style="color: #ffd966;">1010</span> в десятичную систему.</div>
+            <input type="text" class="input-field" id="ans1" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn1"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg1"></div>
         </div>
 
+        <!-- Уровень 2 -->
         <div id="level2" class="level-container level-hidden">
             <div class="quest-question">🧬 Декодируй Base64: <span style="color: #ffd966;">U25vd2Z1bmU=</span></div>
-            <input type="text" class="input-field" id="ans2" placeholder="Твой ответ">
+            <input type="text" class="input-field" id="ans2" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn2"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg2"></div>
         </div>
 
-        <!-- УРОВЕНЬ 3 ИЗМЕНЁН: Кто создал сайт? (HEWI) -->
+        <!-- Уровень 3 -->
         <div id="level3" class="level-container level-hidden">
-            <div class="quest-question">👨‍💻 Кто создал сайт? (напиши ник)</div>
-            <input type="text" class="input-field" id="ans3" placeholder="Твой ответ">
+            <div class="quest-question">👑 Напиши ник основателя сервера (из блока "Команда")</div>
+            <input type="text" class="input-field" id="ans3" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn3"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg3"></div>
         </div>
 
+        <!-- Уровень 4 -->
         <div id="level4" class="level-container level-hidden">
-            <div class="quest-question">🪓 В каком блоке создают алмазный меч?</div>
-            <input type="text" class="input-field" id="ans4" placeholder="Твой ответ">
+            <div class="quest-question">📅 В каком году открывается сервер Snowfune?</div>
+            <input type="text" class="input-field" id="ans4" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn4"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg4"></div>
         </div>
 
+        <!-- Уровень 5 -->
         <div id="level5" class="level-container level-hidden">
-            <div class="quest-question">🤖 Расшифруй бинарный код: <span style="color: #ffd966;">01001001 01010111 01000101 01001000</span></div>
-            <input type="text" class="input-field" id="ans5" placeholder="Твой ответ">
+            <div class="quest-question">🤖 Расшифруй бинарный код: <span style="color: #ffd966;">01001000 01100101 01110111 01101001</span></div>
+            <input type="text" class="input-field" id="ans5" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn5"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg5"></div>
         </div>
 
+        <!-- Уровень 6 -->
         <div id="level6" class="level-container level-hidden">
-            <div class="quest-question">⚔️ Как называется режим, где разрешено гриферство?</div>
-            <input type="text" class="input-field" id="ans6" placeholder="Твой ответ">
+            <div class="quest-question">⚔️ Как называется режим, где разрешено гриферство, воровство и убийства?</div>
+            <input type="text" class="input-field" id="ans6" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn6"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg6"></div>
         </div>
 
+        <!-- Уровень 7 -->
         <div id="level7" class="level-container level-hidden">
             <div class="quest-question">🔐 Декодируй Base32: <span style="color: #ffd966;">IJQXGZJTGIQEKIDD</span></div>
-            <input type="text" class="input-field" id="ans7" placeholder="Твой ответ">
+            <input type="text" class="input-field" id="ans7" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn7"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg7"></div>
         </div>
 
+        <!-- Уровень 8 -->
         <div id="level8" class="level-container level-hidden">
             <div class="quest-question">💾 Сколько бит в одном байте?</div>
-            <input type="text" class="input-field" id="ans8" placeholder="Твой ответ">
+            <input type="text" class="input-field" id="ans8" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn8"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg8"></div>
         </div>
 
+        <!-- Уровень 9 -->
         <div id="level9" class="level-container level-hidden">
-            <div class="quest-question">💥 Какой предмет выпадает из крипера?</div>
-            <input type="text" class="input-field" id="ans9" placeholder="Твой ответ">
+            <div class="quest-question">💥 Какой предмет выпадает из крипера (не считая опыт)?</div>
+            <input type="text" class="input-field" id="ans9" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn9"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg9"></div>
         </div>
 
-        <!-- УРОВЕНЬ 10: СУПЕРСЛОЖНЫЙ ВОПРОС -->
+        <!-- Уровень 10 -->
         <div id="level10" class="level-container level-hidden">
             <div class="quest-question">🧩 Сколько блоков в одном чанке (объём)?</div>
-            <input type="text" class="input-field" id="ans10" placeholder="Твой ответ">
+            <input type="text" class="input-field" id="ans10" placeholder="Твой ответ" autocomplete="off">
             <button class="btn" id="btn10"><i class="fas fa-check"></i> Проверить</button>
             <div class="message" id="msg10"></div>
         </div>
 
-        <!-- Блок с призом -->
+        <!-- Блок с наградой -->
         <div id="rewardBlock" style="display: none;">
             <div class="reward">
                 <div style="font-size: 3rem; color: #ffd966;"><i class="fas fa-trophy"></i></div>
                 <div style="font-size: 1.8rem; font-weight: 700; margin-bottom: 15px;">Ты прошёл все уровни!</div>
                 <div style="font-size: 1.2rem; margin-bottom: 20px;">Твой промокод:</div>
-                <div class="reward-code" id="promoCode">VESNA_V_SNOWFUNE</div>
+                <div class="reward-code" id="promoCode">SNOWFUNE2026</div>
                 <p style="margin-top: 20px;"><i class="fas fa-info-circle"></i> Скопируй код и активируй в лс @IHEWI</p>
             </div>
         </div>
 
-        <!-- Кнопка сброса прогресса -->
         <div style="text-align: center;">
             <div class="restart-btn" id="restartBtn"><i class="fas fa-redo-alt"></i> Начать заново</div>
         </div>
@@ -302,46 +440,47 @@
 
     <div class="footer">
         <p>© 2026 SnowFune. Все права защищены.</p>
-        <p><a href="index.html" style="color: #a0ff80;">← Вернуться на главную</a></p>
+        <p><a href="index.html"><i class="fas fa-arrow-left"></i> Вернуться на главную</a></p>
     </div>
 </div>
 
 <script>
-    function createFlowers() {
-        const container = document.getElementById('flowers-container');
-        const symbols = ['🌸', '🌺', '🌻', '🌷', '🌹', '🌼', '🍀', '🌿'];
-        for (let i = 0; i < 30; i++) {
-            const flower = document.createElement('div');
-            flower.classList.add('flower');
-            flower.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
-            flower.style.left = Math.random() * 100 + '%';
-            flower.style.animationDuration = Math.random() * 15 + 7 + 's';
-            flower.style.fontSize = Math.random() * 3.5 + 0.8 + 'rem';
-            flower.style.opacity = Math.random() * 0.6 + 0.2;
-            flower.style.animationDelay = Math.random() * 15 + 's';
-            container.appendChild(flower);
+    // Создание снежинок
+    function createSnowflakes() {
+        const container = document.getElementById('snowflakes-container');
+        const symbols = ['❄️', '❅', '❆', '✻', '✼'];
+        for (let i = 0; i < 120; i++) {
+            const flake = document.createElement('div');
+            flake.classList.add('snowflake');
+            flake.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+            flake.style.left = Math.random() * 100 + '%';
+            flake.style.animationDuration = Math.random() * 18 + 6 + 's';
+            flake.style.fontSize = Math.random() * 3 + 0.8 + 'rem';
+            flake.style.opacity = Math.random() * 0.7 + 0.2;
+            flake.style.animationDelay = Math.random() * 20 + 's';
+            container.appendChild(flake);
         }
     }
-    createFlowers();
+    createSnowflakes();
 
-    // Массив правильных ответов (в нижнем регистре для сравнения)
+    // Правильные ответы (в нижнем регистре)
     const correctAnswers = [
-        "13",
-        "snowfune",
-        "hewi",           // новый ответ для уровня 3 (HEWI -> hewi)
-        "верстак",
-        "iweh",
-        "анархия",
-        "anarchy",
-        "8",
-        "порох",
-        "65536"           // суперсложный ответ для уровня 10
+        "10",          // 1010 двоичное = 10
+        "snowfune",    // Base64
+        "данилл #воркаутэр",  // ник основателя (можно и "данилл")
+        "2026",        // год открытия
+        "hewi",        // бинарный код
+        "анархия",     // режим
+        "anarchy",     // base32 -> anarchy (проверяем по обоим вариантам)
+        "8",           // бит в байте
+        "порох",       // из крипера
+        "65536"        // 16*16*256
     ];
 
     let currentLevel = 1;
 
     function loadProgress() {
-        const saved = localStorage.getItem('questLevel');
+        const saved = localStorage.getItem('snowfuneQuestLevel');
         if (saved) {
             currentLevel = parseInt(saved, 10);
             if (currentLevel > 10) currentLevel = 11;
@@ -352,13 +491,13 @@
     }
 
     function saveProgress(level) {
-        localStorage.setItem('questLevel', level);
+        localStorage.setItem('snowfuneQuestLevel', level);
         currentLevel = level;
     }
 
     function showCurrentLevel() {
         for (let i = 1; i <= 10; i++) {
-            const levelDiv = document.getElementById('level'+i);
+            const levelDiv = document.getElementById('level' + i);
             if (levelDiv) {
                 levelDiv.classList.remove('level-visible');
                 levelDiv.classList.add('level-hidden');
@@ -367,7 +506,7 @@
         document.getElementById('rewardBlock').style.display = 'none';
 
         if (currentLevel <= 10) {
-            const levelDiv = document.getElementById('level'+currentLevel);
+            const levelDiv = document.getElementById('level' + currentLevel);
             if (levelDiv) {
                 levelDiv.classList.remove('level-hidden');
                 levelDiv.classList.add('level-visible');
@@ -380,15 +519,24 @@
     }
 
     function handleAnswer(level) {
-        const input = document.getElementById('ans'+level);
-        const msgDiv = document.getElementById('msg'+level);
-        const answer = input.value.trim().toLowerCase();
+        const input = document.getElementById('ans' + level);
+        const msgDiv = document.getElementById('msg' + level);
+        let answer = input.value.trim().toLowerCase();
 
-        if (answer === correctAnswers[level-1]) {
+        // Специальная проверка для уровня 7 (base32 -> anarchy)
+        if (level === 7 && answer === "anarchy") {
+            answer = "anarchy";
+        }
+        // Для уровня 3 принимаем "данилл #воркаутэр" или "данилл"
+        if (level === 3 && (answer === "данилл #воркаутэр" || answer === "данилл")) {
+            answer = correctAnswers[2];
+        }
+
+        if (answer === correctAnswers[level - 1]) {
             msgDiv.style.display = 'block';
             msgDiv.className = 'message success';
             msgDiv.innerHTML = '✅ Верно!';
-            document.getElementById('btn'+level).disabled = true;
+            document.getElementById('btn' + level).disabled = true;
             input.disabled = true;
 
             setTimeout(() => {
@@ -409,19 +557,21 @@
         }
     }
 
+    // Назначение обработчиков
     for (let i = 1; i <= 10; i++) {
-        const btn = document.getElementById('btn'+i);
+        const btn = document.getElementById('btn' + i);
         if (btn) {
             btn.addEventListener('click', () => handleAnswer(i));
         }
     }
 
+    // Сброс прогресса
     document.getElementById('restartBtn').addEventListener('click', () => {
-        localStorage.removeItem('questLevel');
+        localStorage.removeItem('snowfuneQuestLevel');
         for (let i = 1; i <= 10; i++) {
-            const input = document.getElementById('ans'+i);
-            const btn = document.getElementById('btn'+i);
-            const msg = document.getElementById('msg'+i);
+            const input = document.getElementById('ans' + i);
+            const btn = document.getElementById('btn' + i);
+            const msg = document.getElementById('msg' + i);
             if (input) {
                 input.value = '';
                 input.disabled = false;
@@ -434,7 +584,8 @@
         showCurrentLevel();
     });
 
-    document.getElementById('promoCode').addEventListener('click', function() {
+    // Копирование промокода
+    document.getElementById('promoCode').addEventListener('click', function () {
         navigator.clipboard.writeText(this.textContent).then(() => {
             alert('Промокод скопирован!');
         });
@@ -442,9 +593,10 @@
 
     loadProgress();
 
+    // Блокировка пройденных уровней при загрузке
     for (let i = 1; i < currentLevel; i++) {
-        const input = document.getElementById('ans'+i);
-        const btn = document.getElementById('btn'+i);
+        const input = document.getElementById('ans' + i);
+        const btn = document.getElementById('btn' + i);
         if (input) input.disabled = true;
         if (btn) btn.disabled = true;
     }
